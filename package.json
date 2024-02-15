@@ -6,7 +6,7 @@
     "sideEffects": false,
     "type": "module",
     "scripts": {
-        "prepare": "husky",
+        "prepare": "is-ci || husky",
         "build": "remix vite:build",
         "dev": "remix vite:dev",
         "start": "remix-serve ./build/index.js",
@@ -40,6 +40,7 @@
     "devDependencies": {
         "@remix-run/dev": "2.6.0",
         "@remix-run/eslint-config": "2.6.0",
+        "@remix-run/testing": "2.6.0",
         "@storybook/addon-essentials": "^7.6.15",
         "@storybook/addon-interactions": "^7.6.15",
         "@storybook/addon-links": "^7.6.15",
@@ -60,6 +61,7 @@
         "@vitest/coverage-v8": "1.2.2",
         "autoprefixer": "10.4.17",
         "chromatic": "10.9.5",
+        "cross-env": "7.0.3",
         "dotenv-cli": "7.3.0",
         "eslint": "8.56.0",
         "eslint-config-airbnb": "19.0.4",
