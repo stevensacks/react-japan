@@ -201,7 +201,7 @@ module.exports = {
     plugins: shared.plugins,
     extends: ['airbnb', ...shared.extends],
     rules: shared.rules,
-    ignorePatterns: ['node_modules', '*.config.js', '.storybook/static'],
+    ignorePatterns: ['node_modules', '*.config.js', '.storybook/static', 'build'],
     overrides: [
         {
             files: ['**/*.ts?(x)'],

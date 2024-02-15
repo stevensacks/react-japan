@@ -6,7 +6,7 @@ type HeaderProps = {
 };
 
 const Header: FC<HeaderProps> = ({className}) => (
-    <header className={twJoin('w-full bg-grey-50 p-4', className)}>
+    <header className={twJoin('w-full bg-black p-4 text-white', className)}>
         <h1 className="text-3xl font-bold">React Japan</h1>
     </header>
 );
