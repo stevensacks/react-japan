@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        @apply antialiased;
+    }
+
+    body {
+        @apply text-grey-900 dark:bg-grey-900 bg-white dark:text-white;
+        @apply selection:bg-blue-500 selection:text-white;
+    }
+
+    strong {
+        @apply font-semibold;
+    }
+}
