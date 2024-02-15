@@ -9,7 +9,7 @@
         "prepare": "is-ci || husky",
         "build": "remix vite:build",
         "dev": "remix vite:dev",
-        "start": "remix-serve ./build/index.js",
+        "start": "remix-serve ./build/server/index.js",
         "deploy": "fly deploy --remote-only",
         "lint": "eslint --fix --max-warnings=0 --ext js,jsx,ts,tsx app --cache --cache-location ./node_modules/.cache/eslint .",
         "lint-all": "npm run typecheck && npm run lint && npm run format && npm run stylelint",
@@ -38,6 +38,7 @@
         "zod": "3.22.4"
     },
     "devDependencies": {
+        "@flydotio/dockerfile": "^0.5.2",
         "@remix-run/dev": "2.6.0",
         "@remix-run/eslint-config": "2.6.0",
         "@remix-run/testing": "2.6.0",
@@ -62,6 +63,7 @@
         "autoprefixer": "10.4.17",
         "chromatic": "10.9.5",
         "cross-env": "7.0.3",
+        "cssnano": "6.0.3",
         "dotenv-cli": "7.3.0",
         "eslint": "8.56.0",
         "eslint-config-airbnb": "19.0.4",
