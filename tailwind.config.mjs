@@ -1,5 +1,4 @@
 import aspectRatioPlugin from '@tailwindcss/aspect-ratio';
-import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 import defaultTheme from 'tailwindcss/defaultTheme';
 
@@ -13,7 +12,8 @@ export default {
             ['./app/**/*.{ts,tsx}']
         :   ['./app/**/*[!.stories].{ts,tsx}'],
     darkMode: 'class',
-    plugins: [aspectRatioPlugin, forms, typography],
+    mode: 'jit',
+    plugins: [aspectRatioPlugin, typography],
     theme: {
         colors: {
             aqua: {
