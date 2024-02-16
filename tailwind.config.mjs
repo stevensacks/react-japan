@@ -10,7 +10,7 @@ export default {
     content:
         isDev || isStorybook ?
             ['./app/**/*.{ts,tsx}']
-        :   ['./app/**/*[!.stories].{ts,tsx}'],
+        :   ['./app/**/*!(.stories).{ts,tsx}'],
     darkMode: 'class',
     mode: 'jit',
     plugins: [aspectRatioPlugin, typography],
