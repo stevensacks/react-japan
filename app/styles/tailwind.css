@@ -8,7 +8,7 @@
     }
 
     body {
-        @apply text-grey-900 dark:bg-grey-900 bg-white dark:text-white;
+        @apply bg-grey-900 text-white;
         @apply selection:bg-blue-500 selection:text-white;
     }
 
