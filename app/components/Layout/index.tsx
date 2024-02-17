@@ -10,7 +10,7 @@ type LayoutProps = {
 const Layout: FC<LayoutProps> = ({children, className}) => (
     <div className={twJoin(className)}>
         <Header />
-        <main>{children}</main>
+        <main className="px-2 py-6 sm:px-6">{children}</main>
     </div>
 );
 

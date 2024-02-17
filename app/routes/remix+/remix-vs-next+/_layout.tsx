@@ -2,6 +2,7 @@ import {json, type MetaFunction} from '@remix-run/node';
 import {Outlet, useLoaderData} from '@remix-run/react';
 import {format} from 'date-fns';
 import Article from '~/components/Article';
+import Layout from '~/components/Layout';
 import type {ArticleMeta} from '~/types';
 
 export const loader = async () => {
@@ -32,9 +33,11 @@ const RemixVsNextLayout = () => {
     const data = useLoaderData<typeof loader>();
 
     return (
-        <Article meta={data.meta}>
-            <Outlet />
-        </Article>
+        <Layout>
+            <Article meta={data.meta}>
+                <Outlet />
+            </Article>
+        </Layout>
     );
 };
 

@@ -7,15 +7,18 @@ type ReactJapanLogoProps = {
 
 const ReactJapanLogo: FC<ReactJapanLogoProps> = () => (
     <Link
-        className="inline-flex select-none items-center gap-2 text-2xl font-bold"
+        className="plain-link inline-flex select-none items-center gap-2 font-bold sm:text-2xl"
         to="/"
     >
         <svg
-            className="h-6 text-[#BC002D]"
+            className="h-4 text-red-700 sm:h-6"
             viewBox="-11.5 -10.23174 23 20.46348"
             xmlns="http://www.w3.org/2000/svg"
         >
-            <title>React Logo</title>
+            <title className="whitespace-nowrap">
+                <span>React</span>
+                <span>Japan</span>
+            </title>
             <circle cx="0" cy="0" fill="currentColor" r="2.05" />
             <g fill="none" stroke="currentColor" strokeWidth="1">
                 <ellipse rx="11" ry="4.2" />

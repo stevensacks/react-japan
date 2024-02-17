@@ -1,5 +1,8 @@
 import type {MetaFunction} from '@remix-run/node';
 import {json} from '@remix-run/node';
+import {Link} from '@remix-run/react';
+import Layout from '~/components/Layout';
+import RemixLogo from '~/components/RemixLogo';
 
 export const loader = async () => {
     const title = 'Remix - React Japan';
@@ -20,9 +23,14 @@ export const meta: MetaFunction<typeof loader> = ({data}) => [
 ];
 
 const RemixRoute = () => (
-    <div>
-        <h2>Remix section goes here</h2>
-    </div>
+    <Layout>
+        <RemixLogo className="h-16" />
+        <ul className="mt-4 space-y-4">
+            <Link prefetch="intent" to="/remix/remix-vs-next">
+                Remix vs Next.JS
+            </Link>
+        </ul>
+    </Layout>
 );
 
 export default RemixRoute;

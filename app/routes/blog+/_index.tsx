@@ -2,14 +2,14 @@ import type {MetaFunction} from '@remix-run/node';
 import Layout from '~/components/Layout';
 
 export const meta: MetaFunction = () => [
-    {title: 'React Japan'},
+    {title: 'Blog - React Japan'},
     {content: 'Welcome to React Japan!', name: 'description'},
 ];
 
-const Index = () => (
+const Blog = () => (
     <Layout>
-        <h1 className="text-4xl">Home</h1>
+        <h1 className="text-4xl">Blog</h1>
     </Layout>
 );
 
-export default Index;
+export default Blog;

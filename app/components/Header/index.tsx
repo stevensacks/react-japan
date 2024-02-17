@@ -1,7 +1,7 @@
 import type {FC} from 'react';
 import {twJoin} from 'tailwind-merge';
+import HeaderNav from '~/components/Header/HeaderNav';
 import ReactJapanLogo from '~/components/ReactJapanLogo';
-import RemixLogo from '~/components/RemixLogo';
 
 type HeaderProps = {
     className?: string;
@@ -10,12 +10,12 @@ type HeaderProps = {
 const Header: FC<HeaderProps> = ({className}) => (
     <header
         className={twJoin(
-            'flex w-full items-center gap-4 px-6 py-4 text-white',
+            'sticky top-0 z-50 flex w-full items-center justify-between gap-4 border-b border-grey-700 bg-grey-900 p-2 sm:px-6 md:py-4',
             className
         )}
     >
         <ReactJapanLogo />
-        <RemixLogo height={18} />
+        <HeaderNav />
     </header>
 );
 

@@ -7,6 +7,7 @@ import {
     Scripts,
     ScrollRestoration,
 } from '@remix-run/react';
+import ErrorBoundary from './components/ErrorBoundary';
 import './styles/tailwind.css';
 
 export const links: LinksFunction = () => [
@@ -31,5 +32,7 @@ const App = () => (
         </body>
     </html>
 );
+
+export {ErrorBoundary};
 
 export default App;

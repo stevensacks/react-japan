@@ -92,7 +92,7 @@ export default {
                 500: '#f44250',
                 // hard-coded in embedded SVG for <docs-*> elements
                 600: '#e12130',
-                700: '#bd1825',
+                700: '#BC002D',
                 800: '#9d1722',
                 900: '#821a22',
                 brand: '#f44250',
