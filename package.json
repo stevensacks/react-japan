@@ -103,6 +103,7 @@
         "postcss-import": "16.0.1",
         "prettier": "3.2.5",
         "prettier-plugin-tailwindcss": "0.5.11",
+        "rehype-pretty-code": "0.13.0",
         "remark-frontmatter": "5.0.0",
         "remark-mdx-frontmatter": "4.0.0",
         "remix-flat-routes": "0.6.4",

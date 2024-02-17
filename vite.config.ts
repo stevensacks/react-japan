@@ -1,5 +1,6 @@
 import mdx from '@mdx-js/rollup';
 import {unstable_vitePlugin as remix} from '@remix-run/dev';
+import rehypePrettyCode from 'rehype-pretty-code';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import {flatRoutes} from 'remix-flat-routes';
@@ -10,6 +11,7 @@ export default defineConfig({
     plugins: [
         // @ts-ignore
         mdx({
+            rehypePlugins: [rehypePrettyCode],
             remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
         }),
         remix({

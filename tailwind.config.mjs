@@ -12,7 +12,6 @@ export default {
             ['./app/**/*.{ts,tsx}']
         :   ['./app/**/*!(.stories).{ts,tsx}'],
     darkMode: 'class',
-    mode: 'jit',
     plugins: [aspectRatioPlugin, typography],
     theme: {
         colors: {
@@ -121,11 +120,36 @@ export default {
                 '2xs': '320px',
                 xs: '480px',
             },
+            // @ts-ignore
+            typography: ({theme}) => ({
+                DEFAULT: {
+                    css: {
+                        '--tw-prose-invert-body': theme('colors.grey.100'),
+                        '--tw-prose-invert-bold': theme('colors.grey.100'),
+                        '--tw-prose-invert-bullets': theme('colors.grey.100'),
+                        '--tw-prose-invert-links': theme('colors.blue.500'),
+                        '--tw-prose-invert-headings': theme('colors.grey.100'),
+                        '--tw-prose-invert-quotes': theme('colors.grey.100'),
+                    },
+                },
+            }),
         },
         fontFamily: {
-            display: ['Inter', ...defaultTheme.fontFamily.sans],
+            display: [
+                'Inter',
+                '"Hiragino Kaku Gothic ProN"',
+                '"Hiragino Sans"',
+                'Meiryo',
+                ...defaultTheme.fontFamily.sans,
+            ],
             mono: ['Source Code Pro', ...defaultTheme.fontFamily.mono],
-            sans: ['Inter', ...defaultTheme.fontFamily.sans],
+            sans: [
+                'Inter',
+                '"Hiragino Kaku Gothic ProN"',
+                '"Hiragino Sans"',
+                'Meiryo',
+                ...defaultTheme.fontFamily.sans,
+            ],
         },
     },
 };
