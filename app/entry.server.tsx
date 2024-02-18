@@ -6,11 +6,16 @@
  */
 
 import {renderToPipeableStream} from 'react-dom/server';
+import {I18nextProvider, initReactI18next} from 'react-i18next';
 import type {EntryContext} from '@remix-run/node';
 import {createReadableStreamFromReadable} from '@remix-run/node';
 import {RemixServer} from '@remix-run/react';
+import {createInstance} from 'i18next';
 import {isbot} from 'isbot';
 import {PassThrough} from 'node:stream';
+import {getLanguageSession} from '~/state/language.server';
+import i18n from './i18n';
+import i18next from './i18next.server';
 
 const ABORT_DELAY = 5000;
 
@@ -33,11 +38,25 @@ export default async function handleRequest(
 
     const callbackName = isbot(userAgent) ? 'onAllReady' : 'onShellReady';
 
+    const instance = createInstance({detection: {}});
+    const languageCookie = await getLanguageSession(request);
+    const detectedLanguage = await i18next.getLocale(request);
+    const lng = languageCookie.getLanguage() || detectedLanguage;
+    const ns = i18next.getRouteNamespaces(remixContext);
+
+    await instance.use(initReactI18next).init({
+        ...i18n,
+        lng,
+        ns,
+    });
+
     return new Promise((resolve, reject) => {
         let didError = false;
 
         const {abort, pipe} = renderToPipeableStream(
-            <RemixServer context={remixContext} url={request.url} />,
+            <I18nextProvider i18n={instance}>
+                <RemixServer context={remixContext} url={request.url} />
+            </I18nextProvider>,
             {
                 [callbackName]: () => {
                     const body = new PassThrough();

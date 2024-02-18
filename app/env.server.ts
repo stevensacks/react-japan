@@ -2,9 +2,11 @@ import {z} from 'zod';
 
 const schema = z.object({
     NODE_ENV: z.string(),
+    SESSION_SECRET: z.string(),
+    SUPPORTED_LOCALES: z.string(),
 });
 
-const clientSchema = schema;
+const clientSchema = schema.omit({SESSION_SECRET: true});
 
 export const env = schema.parse(process.env);
 

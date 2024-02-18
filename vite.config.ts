@@ -12,10 +12,20 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import {flatRoutes} from 'remix-flat-routes';
 import {defineConfig} from 'vite';
+import {cjsInterop} from 'vite-plugin-cjs-interop';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
     plugins: [
+        cjsInterop({
+            // List of CJS dependencies that require interop
+            dependencies: [
+                'i18next',
+                'i18next-browser-languagedetector',
+                'react-i18next',
+                'remix-i18next',
+            ],
+        }),
         // @ts-ignore
         mdx({
             rehypePlugins: [
