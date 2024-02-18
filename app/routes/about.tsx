@@ -8,44 +8,44 @@ export const meta: MetaFunction = () => [
 
 const Index = () => (
     <Layout className="prose prose-invert mx-auto">
-        <h1>About</h1>
+        <h1>このブログについて</h1>
         <p>
-            Welcome to React Japan, where we delve into{' '}
+            React Japanへようこそ
+            このブログでは{' '}
             <a href="https://react.dev/" rel="noreferrer" target="_blank">
                 React
             </a>{' '}
-            development, with a special focus on the{' '}
+            の開発, そして特に{' '}
             <a href="https://remix.run" rel="noreferrer" target="_blank">
                 Remix
             </a>{' '}
-            framework.
+            フレームワークにフォーカスを当てて、研究 & 考察していきます。
         </p>
-        <h2>Our Mission</h2>
+        <h2>私たちのミッション</h2>
         <p>
-            Our mission is to provide valuable knowledge, share best practices
-            and insights, and keep engineers in Japan up-to-date with the latest
-            trends in the world of React and Remix development.
+            私たちは価値の高い知識、ベストプラクティスや経験に基づく私たちの考察を共有し、
+            日本国内のエンジニアがReact & Remix 開発業界の世界の最新のトレンドにキャッチアップしていけることです。
         </p>
         <p>
-            Whether you&apos;re looking to deepen your understanding of React
-            concepts, learn about using Remix to build your next site, or
-            discover tips and tricks for improving your workflow, our goal is to
-            be your go-to resource. Join us on this exciting journey as we
-            explore the possibilities of React development with Remix.
+            - Reactへの理解を深めたい
+            - 次のプロジェクトでRemixを使うために学びたい
+            - 開発ワークフロー改善のヒントや手法を学びたい
+
+            このような思いがある人へのリソースとなることを目指しています。
+
+            共にRemixを使ったReact開発の可能性を探求していきましょう！
         </p>
-        <h2>Why Remix?</h2>
+        <h2>なぜ Remix なの?</h2>
         <p>
-            We believe Remix is the best framework for React development. With
-            its emphasis on developer experience, performance, and scalability,
-            Remix enables developers to build robust, maintainable, and high
-            performance applications.
+            私たちはRemixがReact開発における最善なフレームワークであると信じています。
+            エンジニアの開発体験、パフォーマンス、拡張性に重点を置いたRemixは、
+            健全で保守可能で高性能なアプリケーションを構築することができます。
         </p>
-        <h2>Who We Are</h2>
+        <h2>私たちについて</h2>
         <p>
-            We are front-end engineers who are passionate about React and Remix.
-            We understand the challenges developers face when building modern
-            web applications, and we are dedicated to sharing our knowledge and
-            expertise to empower fellow engineers.
+            私たちはReact & Remixに情熱を持つフロントエンドエンジニアのチームです。
+            現代のWebアプリケーションを構築する際の課題を理解しており、
+            私たちが培ってきた知識と知恵を共有し、エンジニアを力付けることが私たちのパッションです。
         </p>
         <div className="flex flex-1 items-end">
             <div className="flex items-center gap-4">
@@ -58,12 +58,12 @@ const Index = () => (
                 </div>
                 <div>
                     <div className="text-lg font-bold leading-none sm:text-xl sm:leading-tight md:text-3xl">
-                        Steven Sacks
+                        Steven Sacks (スティーブン サックス)
                     </div>
                     <div className="leading-none text-white/50 sm:leading-tight">
-                        React Engineer / Architect
+                        React エンジニア / アーキテクト
                         <br />
-                        Remix and Storybook contributor
+                        Remix & Storybook コントリビューター
                     </div>
                 </div>
             </div>
