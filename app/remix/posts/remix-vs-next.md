@@ -311,17 +311,17 @@ SUM:                  93           2267           8090           7727
 それは、町に入るために自転車で電車に乗ることと、一直線に自転車で行くことの違いです。
 
 🚲-----------------------------------------🏢<br/>
-🚲-----🚊====🏢
+🚲-----🚊====🏢 
 
 通常通り、ネットワークのウォーターフォールでこれが表れています：
 
 <div class="flex w-full gap-4">
   <div class="w-1/2">
-    <figcaption class="text-center bold text-base">Remix Rewrite @ エッジ</figcaption>
+    <figcaption class="text-center bold text-base">Remix Rewrite @ Edge</figcaption>
     <a data-noprefetch href="/blog-images/posts/remix-vs-next/wpt-hkg-search-rewrite-waterfall.png"><img src="/blog-images/posts/remix-vs-next/wpt-hkg-search-rewrite-waterfall.png" /></a>
   </div>
   <div class="w-1/2">
-    <figcaption class="text-center text-base">Remix Port @ US East</figcaption>
+    <figcaption class="text-center text-base">Remix Port in US East</figcaption>
     <a data-noprefetch href="/blog-images/posts/remix-vs-next/wpt-hkg-search-port-waterfall.png"><img src="/blog-images/posts/remix-vs-next/wpt-hkg-search-port-waterfall.png" /></a>
   </div>
 </div>
