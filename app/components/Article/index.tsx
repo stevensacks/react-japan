@@ -16,6 +16,7 @@ const Article: FC<ArticleProps> = ({children, className, meta}) => (
             'prose-li:my-1',
             'prose-code:mx-1 prose-code:rounded-sm prose-code:bg-grey-800 prose-code:px-1 prose-code:py-px prose-code:text-sm prose-code:font-normal prose-code:text-grey-300 prose-code:before:content-[""] prose-code:after:content-[""]',
             'prose-pre:rounded-md prose-pre:bg-grey-800 prose-pre:p-4 prose-pre:text-grey-300',
+            'prose-headings:scroll-mt-16 sm:prose-headings:scroll-mt-20',
             className
         )}
     >

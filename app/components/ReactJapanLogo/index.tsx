@@ -15,10 +15,7 @@ const ReactJapanLogo: FC<ReactJapanLogoProps> = () => (
             viewBox="-11.5 -10.23174 23 20.46348"
             xmlns="http://www.w3.org/2000/svg"
         >
-            <title className="whitespace-nowrap">
-                <span>React</span>
-                <span>Japan</span>
-            </title>
+            <title className="whitespace-nowrap">React Japan</title>
             <circle cx="0" cy="0" fill="currentColor" r="2.05" />
             <g fill="none" stroke="currentColor" strokeWidth="1">
                 <ellipse rx="11" ry="4.2" />

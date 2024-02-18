@@ -10,7 +10,7 @@ type LayoutProps = {
 const Layout: FC<LayoutProps> = ({children, className}) => (
     <>
         <Header />
-        <main className={twMerge('px-2 py-6 sm:px-6', className)}>
+        <main className={twMerge('px-4 py-6 sm:px-6', className)}>
             {children}
         </main>
     </>
