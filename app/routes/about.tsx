@@ -8,9 +8,9 @@ export const meta: MetaFunction = () => [
 
 const Index = () => (
     <Layout className="prose prose-invert mx-auto">
-        <h1>About us</h1>
+        <h1>About</h1>
         <p>
-            Welcome to React Japan, where we delve into the intricacies of{' '}
+            Welcome to React Japan, where we delve into{' '}
             <a href="https://react.dev/" rel="noreferrer" target="_blank">
                 React
             </a>{' '}
@@ -20,70 +20,54 @@ const Index = () => (
             </a>{' '}
             framework.
         </p>
+        <h2>Our Mission</h2>
         <p>
-            Whether you&apos;re a seasoned engineer or just starting your
-            journey in web development, our goal is to provide valuable
-            insights, tutorials, and best practices to help you master React and
-            leverage Remix effectively.
-        </p>
-        <p>
-            Our team is passionate about React and its ecosystem. We understand
-            the challenges developers face when building modern web
-            applications, and we&apos;re dedicated to sharing our knowledge and
-            expertise to empower fellow engineers.
-        </p>
-        <p>
-            Why Remix? As advocates for innovation and efficiency, we believe
-            Remix offers a fresh approach to web development, combining the best
-            of server-rendered and client-rendered frameworks. With its emphasis
-            on developer experience, performance, and scalability, Remix enables
-            developers to build robust, maintainable, and high performance
-            applications.
-        </p>
-        <p>
-            Our target audience primarily consists of engineers in Japan, but
-            our content is crafted to be accessible to developers worldwide. We
-            understand the importance of language diversity, which is why we
-            publish our articles in both English and Japanese. By breaking
-            language barriers, we aim to foster a vibrant community where
-            knowledge knows no bounds.
+            Our mission is to provide valuable knowledge, share best practices
+            and insights, and keep engineers in Japan up-to-date with the latest
+            trends in the world of React and Remix development.
         </p>
         <p>
             Whether you&apos;re looking to deepen your understanding of React
-            concepts, explore the latest features in Remix, or discover tips and
-            tricks for improving your workflow, our blog is your go-to resource.
-            Join us on this exciting journey as we explore the limitless
-            possibilities of React development with Remix.
+            concepts, learn about using Remix to build your next site, or
+            discover tips and tricks for improving your workflow, our goal is to
+            be your go-to resource. Join us on this exciting journey as we
+            explore the possibilities of React development with Remix.
         </p>
-        <p>Thank you for visiting, and happy coding!</p>
-        <p>- The React Japan Team</p>
-        <hr />
-        <h1>私たちについて</h1>
+        <h2>Why Remix?</h2>
         <p>
-            私たちの
-            <a href="https://react.dev/" rel="noreferrer" target="_blank">
-                React
-            </a>
-            ブログへようこそ。ここでは、React開発の微細な部分について深く掘り下げ、特に
-            <a href="https://remix.run" rel="noreferrer" target="_blank">
-                Remix
-            </a>
-            フレームワークに焦点を当てています。あなたが経験豊富なエンジニアであるか、ウェブ開発の旅を始めたばかりであっても、私たちの目標は、Reactをマスターし、Remixを効果的に活用するための貴重な知識、チュートリアル、ベストプラクティスを提供することです。
+            We believe Remix is the best framework for React development. With
+            its emphasis on developer experience, performance, and scalability,
+            Remix enables developers to build robust, maintainable, and high
+            performance applications.
         </p>
+        <h2>Who We Are</h2>
         <p>
-            私たちのチームは、Reactとそのエコシステムに情熱を持っています。モダンなウェブアプリケーションを構築する際に開発者が直面する課題を理解し、私たちの知識と専門知識を共有することに情熱を注いでいます。
+            We are front-end engineers who are passionate about React and Remix.
+            We understand the challenges developers face when building modern
+            web applications, and we are dedicated to sharing our knowledge and
+            expertise to empower fellow engineers.
         </p>
-        <p>
-            なぜRemixなのでしょうか？私たちは革新と効率性の提唱者として、Remixがサーバー側とクライアント側のフレームワークのベストを組み合わせた新しいアプローチを提供していると信じています。開発者エクスペリエンス、パフォーマンス、拡張性に重点を置いたRemixは、ユーザーを喜ばせる堅牢で保守可能なアプリケーションを構築することを可能にします。
-        </p>
-        <p>
-            私たちのターゲットオーディエンスは主に日本のエンジニアですが、私たちのコンテンツは世界中の開発者にもアクセス可能なように作成されています。私たちの記事は英語と日本語の両方で公開されています。言語の壁を取り除くことで、知識が制限されない活発なコミュニティを育成することを目指しています。
-        </p>
-        <p>
-            Reactの概念を深めたり、Remixの最新機能を探求したり、ワークフローを改善するためのヒントやトリックを発見したりしたい場合、私たちのブログがお役に立ちます。私たちと一緒に、React開発とRemixの無限の可能性を探求するこのエキサイティングな旅に参加してください。
-        </p>
-        <p>訪問していただき、ありがとうございます。</p>
-        <p>- React Japan チーム</p>
+        <div className="flex flex-1 items-end">
+            <div className="flex items-center gap-4">
+                <div className="overflow-hidden rounded-full">
+                    <img
+                        alt="Steven Sacks"
+                        className="m-0 size-8 sm:size-12 md:size-16"
+                        src="/authors/steven.jpg"
+                    />
+                </div>
+                <div>
+                    <div className="text-lg font-bold leading-none sm:text-xl sm:leading-tight md:text-3xl">
+                        Steven Sacks
+                    </div>
+                    <div className="leading-none text-white/50 sm:leading-tight">
+                        React Engineer / Architect
+                        <br />
+                        Remix and Storybook contributor
+                    </div>
+                </div>
+            </div>
+        </div>
     </Layout>
 );
 
