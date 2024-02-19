@@ -1,7 +1,6 @@
 import type {FC, ReactNode} from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {twMerge} from 'tailwind-merge';
-import GitHubIcon from '~/components/Icons/GitHub';
-import LinkedInIcon from '~/components/Icons/LinkedIn';
 
 type AuthorProps = {
     className?: string;
@@ -23,7 +22,7 @@ const Author: FC<AuthorProps> = ({
     role,
 }) => (
     <div className={twMerge('flex items-center gap-3 sm:gap-4', className)}>
-        <div className="overflow-hidden rounded-full border border-grey-800">
+        <div className="overflow-hidden rounded-full border border-grey-300 dark:border-grey-800">
             <img
                 alt={name}
                 className="m-0 size-8 sm:size-12 md:size-16"
@@ -44,19 +43,22 @@ const Author: FC<AuthorProps> = ({
                     </>
                 )}
             </div>
-            <div className="text-xs leading-none text-white/50 sm:text-sm sm:leading-tight">
+            <div className="text-xs leading-none text-grey-600 dark:text-grey-400 sm:text-sm sm:leading-tight">
                 {role}
             </div>
         </div>
         <div className="flex items-center gap-4">
             <a
                 aria-label="GitHub"
-                className="size-6"
                 href={github}
                 rel="noreferrer"
                 target="_blank"
             >
-                <GitHubIcon className="origin-top-left scale-[25%] text-grey-100 hover:text-white" />
+                <FontAwesomeIcon
+                    className="text-grey-900 hover:text-grey-800 dark:text-grey-100 dark:hover:text-white"
+                    icon={['fab', 'github']}
+                    size="xl"
+                />
             </a>
             {linkedin && (
                 <a
@@ -65,7 +67,11 @@ const Author: FC<AuthorProps> = ({
                     rel="noreferrer"
                     target="_blank"
                 >
-                    <LinkedInIcon className="text-grey-100 hover:text-white" />
+                    <FontAwesomeIcon
+                        className="text-grey-900 hover:text-grey-800 dark:text-grey-100 dark:hover:text-white"
+                        icon={['fab', 'linkedin']}
+                        size="xl"
+                    />
                 </a>
             )}
         </div>

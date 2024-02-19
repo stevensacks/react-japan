@@ -8,7 +8,7 @@ export const meta: MetaFunction = () => [
 ];
 
 const Index = () => (
-    <Layout className="prose prose-invert mx-auto">
+    <Layout className="prose mx-auto dark:prose-invert">
         <h1>このブログについて</h1>
         <p>
             React Japanへようこそ！このブログでは{' '}
@@ -24,8 +24,8 @@ const Index = () => (
         <h2>私たちのミッション</h2>
         <p>
             私たちは価値の高い知識、ベストプラクティスや経験に基づく私たちの考察を共有し、
-            日本国内のエンジニアがReact & Remix
-            開発業界の世界の最新のトレンドにキャッチアップしていけることです。
+            日本国内のエンジニアがReact &
+            Remix開発業界の世界の最新のトレンドにキャッチアップしていけることです。
             <ul>
                 <li>Reactへの理解を深めたい</li>
                 <li>次のプロジェクトでRemixを使うために学びたい</li>
@@ -62,7 +62,7 @@ const Index = () => (
                 className="flex-1"
                 github="https://github.com/takahero"
                 image="/authors/takahiro.jpg"
-                name="長谷川　貴宏"
+                name="長谷川 貴宏"
                 role="React 開発者"
             />
         </div>

@@ -16,7 +16,7 @@ const HeaderNavLink: FC<HeaderNavLinkProps> = ({
         className={({isActive}) =>
             twJoin(
                 'plain-link text-sm sm:text-base',
-                isActive ? 'text-red-700' : 'text-grey-100',
+                isActive ? 'text-red-700' : 'text-grey-900 dark:text-grey-100',
                 className
             )
         }

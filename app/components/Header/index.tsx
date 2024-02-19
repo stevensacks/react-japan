@@ -10,7 +10,7 @@ type HeaderProps = {
 const Header: FC<HeaderProps> = ({className}) => (
     <header
         className={twJoin(
-            'sticky top-0 z-50 flex w-full items-center justify-between gap-4 border-b border-grey-700 bg-grey-900 p-2 sm:px-6 md:py-4',
+            'sticky top-0 z-50 flex w-full items-center justify-between gap-4 border-b border-grey-100 bg-white p-2 shadow-sm dark:border-grey-800 dark:bg-grey-900 sm:px-6 md:py-4',
             className
         )}
     >

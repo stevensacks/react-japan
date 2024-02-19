@@ -12,10 +12,12 @@ type ArticleProps = {
 const Article: FC<ArticleProps> = ({children, className, meta}) => (
     <article
         className={twJoin(
-            'container prose prose-invert mx-auto p-4 pt-0 sm:prose-lg sm:px-0',
+            'container prose mx-auto p-4 pt-0 dark:prose-invert sm:prose-lg sm:px-0',
             'prose-li:my-1',
-            'prose-code:mx-1 prose-code:rounded-sm prose-code:bg-grey-800 prose-code:px-1 prose-code:py-px prose-code:text-sm prose-code:font-normal prose-code:text-grey-300 prose-code:before:content-[""] prose-code:after:content-[""]',
-            'prose-pre:rounded-md prose-pre:bg-grey-800 prose-pre:p-4 prose-pre:text-grey-300',
+            'prose-code:mx-1 prose-code:rounded-sm prose-code:px-1 prose-code:py-px prose-code:text-sm prose-code:font-normal prose-code:before:content-[""] prose-code:after:content-[""]',
+            'prose-pre:rounded-md prose-pre:p-4',
+            'prose-code:bg-grey-800 prose-code:text-grey-300 prose-pre:bg-grey-800 prose-pre:text-grey-300',
+            'dark:prose-code:bg-grey-800 dark:prose-code:text-grey-300 dark:prose-pre:bg-grey-800 dark:prose-pre:text-grey-300',
             'prose-headings:scroll-mt-16 sm:prose-headings:scroll-mt-20',
             className
         )}

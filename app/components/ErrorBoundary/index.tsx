@@ -27,12 +27,9 @@ const ErrorBoundary: FC = () => {
                                     'flex items-center gap-5 text-center'
                                 )}
                             >
-                                <h1 className="border-r pr-5 text-2xl leading-10 tracking-wide">
+                                <h1 className="text-2xl leading-10 tracking-wide">
                                     404
                                 </h1>
-                                <h2 className="text-sm tracking-wide">
-                                    Page not found
-                                </h2>
                             </div>
                         </main>
                         <Scripts />
