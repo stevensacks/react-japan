@@ -8,7 +8,7 @@ export const meta: MetaFunction = () => [
 ];
 
 const Index = () => (
-    <Layout className="prose prose-invert mx-auto">
+    <Layout className="prose mx-auto dark:prose-invert">
         <h1>About</h1>
         <p>
             Welcome to React Japan, where we delve into{' '}

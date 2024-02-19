@@ -124,6 +124,12 @@ export default {
             typography: ({theme}) => ({
                 DEFAULT: {
                     css: {
+                        '--tw-prose-body': theme('colors.grey.900'),
+                        '--tw-prose-bold': theme('colors.grey.900'),
+                        '--tw-prose-bullets': theme('colors.grey.900'),
+                        '--tw-prose-links': theme('colors.blue.500'),
+                        '--tw-prose-headings': theme('colors.grey.900'),
+                        '--tw-prose-quotes': theme('colors.grey.900'),
                         '--tw-prose-invert-body': theme('colors.grey.100'),
                         '--tw-prose-invert-bold': theme('colors.grey.100'),
                         '--tw-prose-invert-bullets': theme('colors.grey.100'),

@@ -8,7 +8,7 @@ export const meta: MetaFunction = () => [
 ];
 
 const Index = () => (
-    <Layout className="prose prose-invert mx-auto">
+    <Layout className="prose mx-auto dark:prose-invert">
         <h1>このブログについて</h1>
         <p>
             React Japanへようこそ！このブログでは{' '}
@@ -62,7 +62,7 @@ const Index = () => (
                 className="flex-1"
                 github="https://github.com/takahero"
                 image="/authors/takahiro.jpg"
-                name="長谷川　貴宏"
+                name="長谷川 貴宏"
                 role="React 開発者"
             />
         </div>

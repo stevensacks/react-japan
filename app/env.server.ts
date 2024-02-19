@@ -2,6 +2,7 @@ import {z} from 'zod';
 
 const schema = z.object({
     NODE_ENV: z.string(),
+    SESSION_SECRET: z.string(),
 });
 
 const clientSchema = schema;
