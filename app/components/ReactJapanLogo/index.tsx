@@ -1,4 +1,5 @@
 import type {FC} from 'react';
+import {faReact} from '@fortawesome/free-brands-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {Link} from '@remix-run/react';
 
@@ -11,7 +12,7 @@ const ReactJapanLogo: FC<ReactJapanLogoProps> = () => (
         className="plain-link inline-flex select-none items-center gap-2 font-bold sm:text-2xl"
         to="/"
     >
-        <FontAwesomeIcon className="text-red-700" icon={['fab', 'react']} />
+        <FontAwesomeIcon className="text-red-700" icon={faReact} />
         <span className="text-grey-900 dark:text-grey-100">React Japan</span>
     </Link>
 );

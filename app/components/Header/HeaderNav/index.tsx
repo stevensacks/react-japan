@@ -8,7 +8,10 @@ const HeaderNav = () => {
 
     return (
         <nav className="flex items-center gap-4">
-            <HeaderNavLink to={isEnglish ? '/' : '/en'}>
+            <HeaderNavLink
+                className="font-semibold"
+                to={isEnglish ? '/' : '/en'}
+            >
                 {isEnglish ? '日本語' : 'EN'}
             </HeaderNavLink>
             <DarkModeToggle />

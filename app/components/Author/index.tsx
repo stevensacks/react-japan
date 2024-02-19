@@ -1,4 +1,5 @@
 import type {FC, ReactNode} from 'react';
+import {faGithub, faLinkedin} from '@fortawesome/free-brands-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {twMerge} from 'tailwind-merge';
 
@@ -56,7 +57,7 @@ const Author: FC<AuthorProps> = ({
             >
                 <FontAwesomeIcon
                     className="text-grey-900 hover:text-grey-800 dark:text-grey-100 dark:hover:text-white"
-                    icon={['fab', 'github']}
+                    icon={faGithub}
                     size="xl"
                 />
             </a>
@@ -69,7 +70,7 @@ const Author: FC<AuthorProps> = ({
                 >
                     <FontAwesomeIcon
                         className="text-grey-900 hover:text-grey-800 dark:text-grey-100 dark:hover:text-white"
-                        icon={['fab', 'linkedin']}
+                        icon={faLinkedin}
                         size="xl"
                     />
                 </a>
