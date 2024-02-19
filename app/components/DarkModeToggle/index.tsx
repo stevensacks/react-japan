@@ -1,4 +1,5 @@
 import type {FC} from 'react';
+import {faMoon, faSun} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {twMerge} from 'tailwind-merge';
 import {useTheme} from '~/state/theme';
@@ -28,11 +29,11 @@ const DarkModeToggle: FC<DarkModeToggleProps> = ({className}) => {
         >
             {theme === 'dark' ?
                 <FontAwesomeIcon
-                    icon={['fas', 'moon']}
+                    icon={faMoon}
                     size="sm"
                     transform={{rotate: -20}}
                 />
-            :   <FontAwesomeIcon icon={['fas', 'sun']} size="sm" />}
+            :   <FontAwesomeIcon icon={faSun} size="sm" />}
         </button>
     );
 };

@@ -15,11 +15,8 @@ import State from '~/state';
 import {ThemeHead, useTheme} from '~/state/theme';
 import {getThemeSession} from '~/state/theme.server';
 import ErrorBoundary from './components/ErrorBoundary';
-import fontAwesome from './icons';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import './styles/tailwind.css';
-
-fontAwesome();
 
 export const loader = async ({request}: LoaderFunctionArgs) => {
     const themeSession = await getThemeSession(request);
