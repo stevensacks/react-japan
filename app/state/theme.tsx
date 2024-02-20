@@ -3,8 +3,6 @@ import {createContext, useContext, useEffect, useRef, useState} from 'react';
 import {useFetcher} from '@remix-run/react';
 import type {Maybe} from '~/types';
 
-const PREFER_MATCH_MEDIA = false;
-
 export type Theme = Maybe<'dark' | 'light'>;
 const themes = ['dark', 'light'];
 
@@ -36,11 +34,7 @@ export const useTheme = (): [Theme, Dispatch<SetStateAction<Theme>>] => [
 
 const prefersDarkMQ = '(prefers-color-scheme: dark)';
 const getPreferredTheme = () =>
-    PREFER_MATCH_MEDIA ?
-        window.matchMedia(prefersDarkMQ).matches ?
-            'dark'
-        :   'light'
-    :   'light';
+    window.matchMedia(prefersDarkMQ).matches ? 'dark' : 'light';
 
 type ThemeProviderProps = {
     children: ReactNode;
@@ -70,7 +64,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
             return null;
         }
 
-        return PREFER_MATCH_MEDIA ? getPreferredTheme() : 'light';
+        return getPreferredTheme();
     });
 
     const persistTheme = useFetcher();
@@ -103,13 +97,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
         const mediaQuery = window.matchMedia(prefersDarkMQ);
 
         const onChange = () => {
-            setTheme(
-                PREFER_MATCH_MEDIA ?
-                    mediaQuery.matches ?
-                        'dark'
-                    :   'light'
-                :   'light'
-            );
+            setTheme(mediaQuery.matches ? 'dark' : 'light');
         };
 
         mediaQuery.addEventListener('change', onChange);
@@ -126,7 +114,6 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
     );
 };
 
-const themeLight = "const theme = 'light'";
 const themeMatchMedia = `const theme = window.matchMedia(${JSON.stringify(
     prefersDarkMQ
 )}).matches
@@ -135,7 +122,7 @@ const themeMatchMedia = `const theme = window.matchMedia(${JSON.stringify(
 
 const clientThemeCode = `
 ;(() => {
-  ${PREFER_MATCH_MEDIA ? themeMatchMedia : themeLight}
+  ${themeMatchMedia}
   const cl = document.documentElement.classList;
   const themeAlreadyApplied = cl.contains('light') || cl.contains('dark');
   if (themeAlreadyApplied) {
