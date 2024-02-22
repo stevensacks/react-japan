@@ -56,7 +56,7 @@ const Author: FC<AuthorProps> = ({
                 target="_blank"
             >
                 <FontAwesomeIcon
-                    className="text-grey-900 hover:text-grey-800 dark:text-grey-100 dark:hover:text-white"
+                    className="text-grey-900 hover:text-red-500 dark:text-white dark:hover:text-red-500"
                     icon={faGithub}
                     size="xl"
                 />
@@ -69,7 +69,7 @@ const Author: FC<AuthorProps> = ({
                     target="_blank"
                 >
                     <FontAwesomeIcon
-                        className="text-grey-900 hover:text-grey-800 dark:text-grey-100 dark:hover:text-white"
+                        className="text-grey-900 hover:text-red-500 dark:text-white dark:hover:text-red-500"
                         icon={faLinkedin}
                         size="xl"
                     />

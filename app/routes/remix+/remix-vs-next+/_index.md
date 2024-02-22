@@ -139,11 +139,11 @@ SSGは動的なページにはスケーリングしないため、Next.jsはユ�
 <div class="flex w-full gap-4">
   <div class="w-1/2">
     <figcaption class="text-center bold text-base">Remixの検索</figcaption>
-    <a data-noprefetch href="/blog-images/posts/remix-vs-next/wpt-search-remix-waterfall.png"><img src="/blog-images/posts/remix-vs-next/wpt-search-remix-waterfall.png" /></a>
+    <a data-noprefetch href="/assets/articles/remix-vs-next/wpt-search-remix-waterfall.png"><img src="/assets/articles/remix-vs-next/wpt-search-remix-waterfall.png" /></a>
   </div>
   <div class="w-1/2">
     <figcaption class="text-center text-base">Next.jsの検索</figcaption>
-    <a data-noprefetch href="/blog-images/posts/remix-vs-next/wpt-search-next-waterfall.png"><img src="/blog-images/posts/remix-vs-next/wpt-search-next-waterfall.png" /></a>
+    <a data-noprefetch href="/assets/articles/remix-vs-next/wpt-search-next-waterfall.png"><img src="/assets/articles/remix-vs-next/wpt-search-next-waterfall.png" /></a>
   </div>
 </div>
 
@@ -317,11 +317,11 @@ SUM:                  93           2267           8090           7727
 <div class="flex w-full gap-4">
   <div class="w-1/2">
     <figcaption class="text-center bold text-base">Remix Rewrite @ エッジ</figcaption>
-    <a data-noprefetch href="/blog-images/posts/remix-vs-next/wpt-hkg-search-rewrite-waterfall.png"><img src="/blog-images/posts/remix-vs-next/wpt-hkg-search-rewrite-waterfall.png" /></a>
+    <a data-noprefetch href="/assets/articles/remix-vs-next/wpt-hkg-search-rewrite-waterfall.png"><img src="/assets/articles/remix-vs-next/wpt-hkg-search-rewrite-waterfall.png" /></a>
   </div>
   <div class="w-1/2">
     <figcaption class="text-center text-base">Remix Port @ US East</figcaption>
-    <a data-noprefetch href="/blog-images/posts/remix-vs-next/wpt-hkg-search-port-waterfall.png"><img src="/blog-images/posts/remix-vs-next/wpt-hkg-search-port-waterfall.png" /></a>
+    <a data-noprefetch href="/assets/articles/remix-vs-next/wpt-hkg-search-port-waterfall.png"><img src="/assets/articles/remix-vs-next/wpt-hkg-search-port-waterfall.png" /></a>
   </div>
 </div>
 
@@ -348,7 +348,7 @@ Remixのような「エッジネイティブ」フレームワークを使用す
 <figcaption>検索入力のプリフェッチ、高速な3G</figcaption>
 
 <video autoplay loop controls width="100%">
-  <source src="/blog-images/posts/remix-vs-next/prefetch-search.mp4" type="video/mp4" />
+  <source src="/assets/articles/remix-vs-next/prefetch-search.mp4" type="video/mp4" />
 </video>
 
 スピナーやスケルトンを使わず、遅いネットワークでも即座にユーザーエクスペリエンスを提供します🏎
@@ -421,7 +421,7 @@ Remix はサーバーとのすべてのやり取り（データの読み込み�
 <figcaption>Next.jsのPOSTエラー</figcaption>
 
 <video autoplay loop controls width="100%">
-  <source src="/blog-images/posts/remix-vs-next/next-error.mp4" type="video/mp4" />
+  <source src="/assets/articles/remix-vs-next/next-error.mp4" type="video/mp4" />
 </video>
 
 何も起こりません。エラーハンドリングは難しくて面倒です。多くの開発者はここでスキップしてしまいます。私たちはこれが非常に悪いデフォルトのユーザーエクスペリエンスだと考えています。
@@ -431,7 +431,7 @@ Remix はサーバーとのすべてのやり取り（データの読み込み�
 <figcaption>RemixのPOSTエラー</figcaption>
 
 <video autoplay loop controls width="100%">
-  <source src="/blog-images/posts/remix-vs-next/remix-error.mp4" type="video/mp4" />
+  <source src="/assets/articles/remix-vs-next/remix-error.mp4" type="video/mp4" />
 </video>
 
 Remixは、アプリ内のデータとレンダリングに関するすべてのエラーを処理します。サーバー上のエラーも含めてです。
@@ -451,7 +451,7 @@ Remixがこれを実現できる唯一の理由は、Remixのデータの抽象�
 <figcaption>Next.jsの中断</figcaption>
 
 <video autoplay loop controls width="100%">
-  <source src="/blog-images/posts/remix-vs-next/change-quantity-next.mp4" type="video/mp4" />
+  <source src="/assets/articles/remix-vs-next/change-quantity-next.mp4" type="video/mp4" />
 </video>
 
 実際に何が起こっているかは少し見づらいですが、ビデオコントロールをスクラブするとより良く見えます。中央部分で5から6から5へと変化する奇妙な動きがあります。最後の数秒が最も興味深いです。最後に送信されたリクエストが着地し（4になるため）、数フレーム後に最初に送信されたリクエストが着地します！数量フィールドはユーザーの操作なしに5から4から2にジャンプします。信頼性の低いUIですね。
@@ -467,7 +467,7 @@ Remixがこれを実現できる唯一の理由は、Remixのデータの抽象�
 <figcaption>Remixの中断処理</figcaption>
 
 <video autoplay loop controls width="100%">
-  <source src="/blog-images/posts/remix-vs-next/change-quantity-remix.mp4?f" type="video/mp4" />
+  <source src="/assets/articles/remix-vs-next/change-quantity-remix.mp4?f" type="video/mp4" />
 </video>
 
 Remixは中断時にリクエストをキャンセルし、POSTが完了した後にデータを再検証します。これにより、フォームで行った変更だけでなく、ページ全体のUIがサーバーと同期していることが保証されます。
@@ -485,7 +485,7 @@ RemixのAPIを設計する際には、常にプラットフォームを最初に
 <figcaption>JavaScriptを使わずにRemix</figcaption>
 
 <video autoplay loop controls width="100%">
-  <source src="/blog-images/posts/remix-vs-next/no-js.mp4" type="video/mp4" />
+  <source src="/assets/articles/remix-vs-next/no-js.mp4" type="video/mp4" />
 </video>
 
 Remixをこのように使用することは完全に有効ですが、JavaScriptを使用せずにウェブサイトを構築することは意図していません。私たちは素晴らしいユーザーインターフェースを構築するための大きな野心を持っており、そのためにはJavaScriptが必要です。
@@ -596,21 +596,21 @@ Next.jsでは、APIルートとUIの他の部分への更新の伝播のため�
 
 
 [wpt-virginia-cable]: https://www.webpagetest.org/video/compare.php?tests=220113_BiDc2H_cfaa25c420a8552959c39df6a7d24e08,220113_BiDc1H_6121ab1c9a5c969874e64344aecce3ec,220113_BiDc9N_b9e84f012470b1aeb51754fb010133d9
-[wpt-virginia-cable-gif]: /blog-images/posts/remix-vs-next/wpt-virginia-homepage-cable.gif
-[wpt-virginia-cable-gif-slow-mo]: /blog-images/posts/remix-vs-next/wpt-virginia-homepage-cable-slow.gif
+[wpt-virginia-cable-gif]: /assets/articles/remix-vs-next/wpt-virginia-homepage-cable.gif
+[wpt-virginia-cable-gif-slow-mo]: /assets/articles/remix-vs-next/wpt-virginia-homepage-cable-slow.gif
 [wpt-virginia-search-cable]: https://www.webpagetest.org/video/compare.php?tests=220114_AiDcG6_3792ae086fc7d2decbddddc1cc521705,220114_BiDcWS_3b730524b3294cc4aabd961753821fe2,220114_AiDcD6_7aa4143672ff6295a8b88392f3e5ef42
-[wpt-virginia-search-cable-gif]: /blog-images/posts/remix-vs-next/wpt-virginia-search-cable.gif
+[wpt-virginia-search-cable-gif]: /assets/articles/remix-vs-next/wpt-virginia-search-cable.gif
 [wpt-virginia-search-miss]: https://www.webpagetest.org/video/compare.php?tests=220114_AiDcMN_e671a25cc0dc7b5bb0986e397e00f044,220114_AiDc8W_e897cd8815342449977013c2d57a4daf,220114_AiDcQX_d4ce4649434538f369982fa828abae82
-[wpt-virginia-search-miss-gif]: /blog-images/posts/remix-vs-next/wpt-virginia-search-miss-cable.gif
+[wpt-virginia-search-miss-gif]: /assets/articles/remix-vs-next/wpt-virginia-search-miss-cable.gif
 [wpt-virginia-search-miss-fast]: https://www.webpagetest.org/video/compare.php?tests=220114_BiDc1T_9ea8b52894cbd02675159ae963750ace-r:1-c:0
 [wpt-hkg-search-3g]: https://www.webpagetest.org/video/compare.php?tests=220114_BiDcDX_a0db98ec1d32d3be3e263fab2628df47,220114_AiDcJF_f139b368029039e7de112963e2fb43b8
 [shopify-api-is-fast]: https://www.webpagetest.org/result/220114_AiDcQX_d4ce4649434538f369982fa828abae82/1/details/#waterfall_view_step1
-[wpt-hkg-search-3g-gif]: /blog-images/posts/remix-vs-next/wpt-hkg-search-3G.gif
+[wpt-hkg-search-3g-gif]: /assets/articles/remix-vs-next/wpt-hkg-search-3G.gif
 [wpt-hkg-search-miss-cable]: https://www.webpagetest.org/video/compare.php?tests=220114_AiDc2R_5dfaa245cd27404654074fba9cd73248,220114_AiDcM4_9b913562cae343803f0c4efef48b51b8,220114_AiDcYP_534551c67b82cd664aae1c0813c384de
-[wpt-hkg-search-miss-cable-gif]: /blog-images/posts/remix-vs-next/wpt-hkg-search-miss-cable.gif
+[wpt-hkg-search-miss-cable-gif]: /assets/articles/remix-vs-next/wpt-hkg-search-miss-cable.gif
 [hkgsearchcomp]: https://www.webpagetest.org/video/compare.php?tests=220110_AiDcMC_9b1603305e652189ea080a7b8ae75973,220110_AiDc72_5d6c4bc51f42348f04eee578560bf1cd
-[hkgsearchcompgif]: /blog-images/posts/remix-vs-next/hkg-search-comp.gif
-[nextnojs]: /blog-images/posts/remix-vs-next/next-no-js.jpg
+[hkgsearchcompgif]: /assets/articles/remix-vs-next/hkg-search-comp.gif
+[nextnojs]: /assets/articles/remix-vs-next/next-no-js.jpg
 [next-demo]: https://Shopify.demo.vercel.store/
 [remix-port]: https://remix-commerce-mcansh.vercel.app/
 [remix-rewrite]: https://remix-ecommerce.fly.dev
@@ -626,7 +626,7 @@ Next.jsでは、APIルートとUIの他の部分への更新の伝播のため�
 [sie]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#stale-if-error
 [prefetch]: https://caniuse.com/link-rel-prefetch
 [sydney-cache-miss-comp]: https://www.webpagetest.org/video/compare.php?tests=220110_BiDcTH_bfa0341e83efd414f71ac8ed2f1d311f,220110_AiDcC5_7efb60a6c8e1eb4928922b5bac788436#
-[sydney-cache-miss-gif]: /blog-images/posts/remix-vs-next/sydney-cache-miss-cable.gif
+[sydney-cache-miss-gif]: /assets/articles/remix-vs-next/sydney-cache-miss-cable.gif
 [vercel-miss]: https://www.webpagetest.org/result/220110_BiDcT5_204e5de35a6e50af0e62b4972b34c987/1/details/#waterfall_view_step1
 [redis]: https://redis.com/
 [code-next-add-to-cart]: https://github.com/vercel/commerce/blob/3670ff58690be3af9e2fc33f0d4ba04c992d2cb9/components/product/ProductSidebar/ProductSidebar.tsx#L64

@@ -84,13 +84,12 @@ export default {
                 brand: '#d83bd2',
             },
             red: {
+                50: '#fef2f3',
                 100: '#ffe1e3',
                 200: '#ffc9cd',
                 300: '#fea3aa',
                 400: '#fc6d78',
-                50: '#fef2f3',
-                500: '#f44250',
-                // hard-coded in embedded SVG for <docs-*> elements
+                500: '#ff4142',
                 600: '#e12130',
                 700: '#BC002D',
                 800: '#9d1722',

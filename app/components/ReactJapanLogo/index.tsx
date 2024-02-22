@@ -1,20 +1,23 @@
-import type {FC} from 'react';
-import {faReact} from '@fortawesome/free-brands-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {Link} from '@remix-run/react';
+import type {DetailedHTMLProps, FC, ImgHTMLAttributes} from 'react';
+import {twJoin} from 'tailwind-merge';
 
-type ReactJapanLogoProps = {
-    className?: string;
-};
-
-const ReactJapanLogo: FC<ReactJapanLogoProps> = () => (
-    <Link
-        className="plain-link inline-flex select-none items-center gap-2 font-bold sm:text-2xl"
-        to="/"
-    >
-        <FontAwesomeIcon className="text-red-700" icon={faReact} />
-        <span className="text-grey-900 dark:text-grey-100">React Japan</span>
-    </Link>
+const ReactJapanLogo: FC<
+    DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
+> = ({className, ...props}) => (
+    <>
+        <img
+            alt="React Japan"
+            className={twJoin('dark:hidden', className)}
+            src="/assets/logo-light.png"
+            {...props}
+        />
+        <img
+            alt="React Japan"
+            className={twJoin('hidden dark:inline', className)}
+            src="/assets/logo-dark.png"
+            {...props}
+        />
+    </>
 );
 
 export default ReactJapanLogo;

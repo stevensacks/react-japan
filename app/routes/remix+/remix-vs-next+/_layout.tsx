@@ -14,7 +14,7 @@ export const loader = async () => {
         },
         date: format(new Date('2022-01-11'), 'PPP'),
         description: 'RemixとNext.jsの客観的比較',
-        image: '/blog-images/headers/remix-vs-next.jpg',
+        image: '/assets/articles/remix-vs-next/header.jpg',
         title: 'RemixとNext.js - React Japan',
     };
 
