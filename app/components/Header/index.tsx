@@ -3,6 +3,7 @@ import {Link} from '@remix-run/react';
 import {twJoin} from 'tailwind-merge';
 import HeaderNav from '~/components/Header/HeaderNav';
 import ReactJapanLogo from '~/components/ReactJapanLogo';
+import styles from './styles.module.css';
 
 type HeaderProps = {
     className?: string;
@@ -12,7 +13,7 @@ const Header: FC<HeaderProps> = ({className}) => (
     <header
         className={twJoin(
             'sticky top-0 z-50 flex w-full items-center justify-between gap-4 px-4 py-2 sm:px-6 md:py-2',
-            'bg-gradient-to-b from-white to-transparent dark:from-grey-900',
+            styles.background,
             className
         )}
     >
