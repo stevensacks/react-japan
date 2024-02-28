@@ -2,56 +2,71 @@ import type {FC} from 'react';
 import {cssBundleHref} from '@remix-run/css-bundle';
 import type {LinksFunction, LoaderFunctionArgs} from '@remix-run/node';
 import {json} from '@remix-run/node';
-import {
-    Links,
-    Meta,
-    Outlet,
-    Scripts,
-    ScrollRestoration,
-    useLoaderData,
-} from '@remix-run/react';
+import {Outlet, useLoaderData} from '@remix-run/react';
 import {twJoin} from 'tailwind-merge';
+import Document from '~/components/Document';
 import State from '~/state';
-import {ThemeHead, useTheme} from '~/state/theme';
+import {useTheme} from '~/state/theme';
 import {getThemeSession} from '~/state/theme.server';
+import tailwind from '~/styles/tailwind.css?url';
+import {isProductionHost} from '~/utils/http.server';
 import ErrorBoundary from './components/ErrorBoundary';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import './styles/tailwind.css';
 
 export const loader = async ({request}: LoaderFunctionArgs) => {
     const themeSession = await getThemeSession(request);
 
-    return json({
-        theme: themeSession.getTheme(),
-    });
+    const url = new URL(request.url);
+    const language = url.pathname.startsWith('/en') ? 'en' : 'ja';
+
+    const isProduction = isProductionHost(request);
+
+    return json(
+        {
+            language,
+            noIndex: !isProduction,
+            theme: themeSession.getTheme(),
+        },
+        {
+            headers: {
+                Vary: 'Cookie',
+            },
+        }
+    );
 };
 
-export const links: LinksFunction = () => [
-    ...(cssBundleHref ? [{href: cssBundleHref, rel: 'stylesheet'}] : []),
-];
+export const links: LinksFunction = () => {
+    const preloadedFonts = [
+        'inter-roman-latin-var.woff2',
+        'inter-italic-latin-var.woff2',
+        'source-code-pro-roman-var.woff2',
+        'source-code-pro-italic-var.woff2',
+    ];
+
+    return [
+        {href: tailwind, rel: 'stylesheet'},
+        ...(cssBundleHref ? [{href: cssBundleHref, rel: 'stylesheet'}] : []),
+        ...preloadedFonts.map((font) => ({
+            as: 'font',
+            href: `/fonts/${font}`,
+            rel: 'preload',
+        })),
+    ];
+};
 
 const App: FC = () => {
     const data = useLoaderData<typeof loader>();
     const [theme] = useTheme();
 
     return (
-        <html className={twJoin(theme)} lang="en">
-            <head>
-                <meta charSet="utf-8" />
-                <meta
-                    content="width=device-width,initial-scale=1"
-                    name="viewport"
-                />
-                <Meta />
-                <Links />
-                <ThemeHead isSsrTheme={Boolean(data.theme)} />
-            </head>
-            <body>
-                <Outlet />
-                <ScrollRestoration />
-                <Scripts />
-            </body>
-        </html>
+        <Document
+            className={twJoin(theme)}
+            isSsrTheme={Boolean(data.theme)}
+            lang={data.language}
+            noIndex={data.noIndex}
+        >
+            <Outlet />
+        </Document>
     );
 };
 

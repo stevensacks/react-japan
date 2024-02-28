@@ -11,26 +11,28 @@ const Index = () => (
     <Layout className="prose mx-auto dark:prose-invert">
         <h1>このブログについて</h1>
         <p>
-            React Japanへようこそ！このブログでは{' '}
+            React Japanへようこそ！このブログでは&nbsp;
             <a href="https://react.dev/" rel="noreferrer" target="_blank">
                 React
-            </a>{' '}
-            の開発, そして特に{' '}
+            </a>
+            &nbsp; の開発, そして特に&nbsp;
             <a href="https://remix.run" rel="noreferrer" target="_blank">
                 Remix
-            </a>{' '}
-            フレームワークにフォーカスを当てて、研究 & 考察していきます。
+            </a>
+            &nbsp; フレームワークにフォーカスを当てて、研究 & 考察していきます。
         </p>
         <h2>私たちのミッション</h2>
         <p>
             私たちは価値の高い知識、ベストプラクティスや経験に基づく私たちの考察を共有し、
             日本国内のエンジニアがReact &
             Remix開発業界の世界の最新のトレンドにキャッチアップしていけることです。
-            <ul>
-                <li>Reactへの理解を深めたい</li>
-                <li>次のプロジェクトでRemixを使うために学びたい</li>
-                <li>開発ワークフロー改善のヒントや手法を学びたい</li>
-            </ul>
+        </p>
+        <ul>
+            <li>Reactへの理解を深めたい</li>
+            <li>次のプロジェクトでRemixを使うために学びたい</li>
+            <li>開発ワークフロー改善のヒントや手法を学びたい</li>
+        </ul>
+        <p>
             このような思いがある人へのリソースとなることを目指しています。
             共にRemixを使ったReact開発の可能性を探求していきましょう！
         </p>

@@ -1,97 +1,69 @@
 import type {FC} from 'react';
-import {
-    isRouteErrorResponse,
-    Links,
-    Meta,
-    Scripts,
-    useRouteError,
-} from '@remix-run/react';
+import {isRouteErrorResponse, useRouteError} from '@remix-run/react';
 import {twJoin} from 'tailwind-merge';
+import Document from '~/components/Document';
+import {getPreferredTheme} from '~/state/theme';
+import {canUseDOM} from '~/utils/dom';
 
 const ErrorBoundary: FC = () => {
     const error = useRouteError();
+    const theme = getPreferredTheme();
+
+    if (!canUseDOM) {
+        // eslint-disable-next-line no-console
+        console.log(error);
+    }
 
     if (isRouteErrorResponse(error)) {
-        if (error.status === 404) {
-            return (
-                <html lang="en">
-                    <head>
-                        <title>404 - Page not found</title>
-                        <Meta />
-                        <Links />
-                    </head>
-                    <body>
-                        <main className="absolute inset-0 flex items-center justify-center">
-                            <div
-                                className={twJoin(
-                                    'flex items-center gap-5 text-center'
-                                )}
-                            >
-                                <h1 className="text-2xl leading-10 tracking-wide">
-                                    404
-                                </h1>
-                            </div>
-                        </main>
-                        <Scripts />
-                    </body>
-                </html>
-            );
-        }
-
         return (
-            <html lang="en">
-                <head>
-                    <title>Error - React Japan</title>
-                    <Meta />
-                    <Links />
-                </head>
-                <body>
-                    <main className="space-y-4 p-8">
-                        <h1 className="text-2xl">
-                            An unexpected error occurred
+            <Document
+                className={twJoin(theme)}
+                lang="en"
+                noIndex={true}
+                title={`${error.statusText} - React Japan`}
+            >
+                <main className="absolute inset-0 flex items-center justify-center">
+                    <div className="flex flex-col items-center gap-5 text-center">
+                        <h1 className="flex gap-2 text-2xl leading-10 tracking-wide">
+                            {error.status} | {error.statusText}
                         </h1>
-                        <h2 className="text-lg">{error.statusText}</h2>
                         {error.data && <p>{error.data}</p>}
-                    </main>
-                </body>
-            </html>
+                    </div>
+                </main>
+            </Document>
         );
     }
 
     if (error instanceof Error) {
         return (
-            <html lang="en">
-                <head>
-                    <title>Error - React Japan</title>
-                    <Meta />
-                    <Links />
-                </head>
-                <body>
-                    <main className="space-y-4 p-8">
-                        <h1 className="text-4xl">Error</h1>
-                        <p>{error.message}</p>
-                        <pre className="whitespace-pre-wrap border border-red-700 p-4 text-sm">
-                            {error.stack}
-                        </pre>
-                    </main>
-                </body>
-            </html>
+            <Document
+                className={twJoin(theme)}
+                lang="en"
+                noIndex={true}
+                title="Error - React Japan"
+            >
+                <main className="space-y-4 p-8">
+                    <h1 className="text-4xl">Error</h1>
+                    <p>{error.message}</p>
+                    <pre className="whitespace-pre-wrap border border-red-700 p-4 text-sm">
+                        {error.stack}
+                    </pre>
+                </main>
+            </Document>
         );
     }
 
     return (
-        <html lang="en">
-            <head>
-                <title>Unexpected error - React Japan</title>
-                <Meta />
-                <Links />
-            </head>
-            <body>
-                <main className="p-8">
-                    <h1 className="text-2xl">An unexpected error occurred</h1>
-                </main>
-            </body>
-        </html>
+        <Document
+            className={twJoin(theme)}
+            lang="en"
+            noIndex={true}
+            title="Unexpected error - React Japan"
+        >
+            <main className="p-8">
+                <h1 className="text-2xl">An unexpected error occurred</h1>
+            </main>
+        </Document>
     );
 };
 

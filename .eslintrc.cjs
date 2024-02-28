@@ -97,7 +97,7 @@ const shared = {
             'error',
             {
                 propTypeNames: ['bool', 'mutuallyExclusiveTrueProps'],
-                rule: '^((is|has|can|show|hide)[A-Z]([A-Za-z0-9]?)+|(show|hide|disabled|required))',
+                rule: '^((is|has|can|show|hide|no)[A-Z]([A-Za-z0-9]?)+|(show|hide|disabled|required))',
             },
         ],
         'react/button-has-type': 'error',

@@ -6,6 +6,8 @@ import type {Maybe} from '~/types';
 export type Theme = Maybe<'dark' | 'light'>;
 const themes = ['dark', 'light'];
 
+const LOCAL_STORAGE_KEY = 'theme';
+
 const ThemeStateContext = createContext<Theme>(undefined);
 
 const ThemeDispatchContext = createContext<
@@ -33,8 +35,20 @@ export const useTheme = (): [Theme, Dispatch<SetStateAction<Theme>>] => [
 ];
 
 const prefersDarkMQ = '(prefers-color-scheme: dark)';
-const getPreferredTheme = () =>
-    window.matchMedia(prefersDarkMQ).matches ? 'dark' : 'light';
+
+export const getPreferredTheme = (): Theme => {
+    if (typeof window === 'undefined') {
+        return null;
+    }
+
+    const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+    if (stored) {
+        return stored as Theme;
+    }
+
+    return window.matchMedia(prefersDarkMQ).matches ? 'dark' : 'light';
+};
 
 type ThemeProviderProps = {
     children: ReactNode;
@@ -87,6 +101,8 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
             return;
         }
 
+        localStorage.setItem(LOCAL_STORAGE_KEY, theme);
+
         persistThemeRef.current.submit(
             {theme},
             {action: 'action/set-theme', method: 'POST'}
@@ -98,6 +114,10 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
 
         const onChange = () => {
             setTheme(mediaQuery.matches ? 'dark' : 'light');
+            localStorage.setItem(
+                LOCAL_STORAGE_KEY,
+                mediaQuery.matches ? 'dark' : 'light'
+            );
         };
 
         mediaQuery.addEventListener('change', onChange);
@@ -157,9 +177,9 @@ export const ThemeHead: FC<ThemeHeadProps> = ({isSsrTheme}) => {
     return (
         <>
             {/*
-        On the server, "theme" might be `null`, so clientThemeCode ensures that
-        this is correct before hydration.
-      */}
+                On the server, "theme" might be `null`, so clientThemeCode ensures that
+                this is correct before hydration.
+            */}
             <meta
                 content={theme === 'light' ? 'light dark' : 'dark light'}
                 name="color-scheme"

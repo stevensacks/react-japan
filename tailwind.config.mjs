@@ -15,12 +15,15 @@ export default {
     plugins: [aspectRatioPlugin, typography],
     theme: {
         colors: {
+            current: 'currentColor',
+            inherit: 'inherit',
+            transparent: 'transparent',
             aqua: {
+                50: '#effefc',
                 100: '#cafdf8',
                 200: '#94fbf4',
                 300: '#3defe9',
                 400: '#24dddc',
-                50: '#effefc',
                 500: '#0cbdc0',
                 600: '#06969b',
                 700: '#0a767b',
@@ -30,26 +33,24 @@ export default {
             },
             black: '#000',
             blue: {
+                50: '#eef7ff',
                 100: '#d9edff',
                 200: '#bce0ff',
                 300: '#8ecdff',
                 400: '#59b0ff',
-                50: '#eef7ff',
                 500: '#3992ff',
-                // hard-coded in embedded SVG for <docs-*> elements
                 600: '#1b6ef5',
                 700: '#1458e1',
                 800: '#1747b6',
                 900: '#193f8f',
                 brand: '#3992ff',
             },
-            current: 'currentColor',
             green: {
+                50: '#f2fcf1',
                 100: '#dffade',
                 200: '#c1f3bf',
                 300: '#90e88d',
                 400: '#6bd968',
-                50: '#f2fcf1',
                 500: '#30ba2d',
                 600: '#229920',
                 700: '#1d791c',
@@ -58,24 +59,23 @@ export default {
                 brand: '#6bd968',
             },
             grey: {
+                50: '#f7f7f7',
                 100: '#e3e3e3',
                 200: '#c8c8c8',
                 300: '#a4a4a4',
                 400: '#818181',
-                50: '#f7f7f7',
                 500: '#666666',
                 600: '#515151',
                 700: '#434343',
                 800: '#383838',
                 900: '#121212',
             },
-            inherit: 'inherit',
             pink: {
+                50: '#fff4ff',
                 100: '#fde8ff',
                 200: '#fbd1fd',
                 300: '#faadfa',
                 400: '#f77bf6',
-                50: '#fff4ff',
                 500: '#ec49e9',
                 600: '#d83bd2',
                 700: '#ac1fa3',
@@ -96,18 +96,15 @@ export default {
                 900: '#821a22',
                 brand: '#f44250',
             },
-            transparent: 'transparent',
             white: '#fff',
             yellow: {
+                50: '#fffce8',
                 100: '#fff9c2',
                 200: '#fff087',
                 300: '#ffde44',
                 400: '#fecc1b',
-                50: '#fffce8',
-                // hard-coded in embedded SVG for <docs-*> elements
                 500: '#eeb004',
                 600: '#cd8701',
-                // hard-coded in embedded SVG for <docs-*> elements
                 700: '#a45f04',
                 800: '#874b0c',
                 900: '#733d10',
@@ -119,7 +116,6 @@ export default {
                 '2xs': '320px',
                 xs: '480px',
             },
-            // @ts-ignore
             typography: ({theme}) => ({
                 DEFAULT: {
                     css: {

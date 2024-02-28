@@ -11,15 +11,15 @@ const Index = () => (
     <Layout className="prose mx-auto dark:prose-invert">
         <h1>About</h1>
         <p>
-            Welcome to React Japan, where we delve into{' '}
+            Welcome to React Japan, where we delve into&nbsp;
             <a href="https://react.dev/" rel="noreferrer" target="_blank">
                 React
-            </a>{' '}
-            development, with a special focus on the{' '}
+            </a>
+            &nbsp; development, with a special focus on the&nbsp;
             <a href="https://remix.run" rel="noreferrer" target="_blank">
                 Remix
-            </a>{' '}
-            framework.
+            </a>
+            &nbsp; framework.
         </p>
         <h2>Our Mission</h2>
         <p>

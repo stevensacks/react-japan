@@ -6,13 +6,15 @@ import type {ArticleMeta} from '~/types';
 type ArticleProps = {
     children: ReactNode;
     className?: string;
-    meta: ArticleMeta;
+    meta?: ArticleMeta;
 };
 
 const Article: FC<ArticleProps> = ({children, className, meta}) => (
     <article
         className={twJoin(
-            'container prose mx-auto p-4 pt-0 dark:prose-invert sm:prose-lg sm:px-0',
+            'container mx-auto p-4 pt-0 sm:px-0',
+            'prose dark:prose-invert sm:prose-lg',
+            'prose-h1:font-semibold prose-h2:font-semibold prose-h3:font-semibold prose-h4:font-semibold',
             'prose-li:my-1',
             'prose-code:mx-1 prose-code:rounded-sm prose-code:px-1 prose-code:py-px prose-code:text-sm prose-code:font-normal prose-code:before:content-[""] prose-code:after:content-[""]',
             'prose-pre:rounded-md prose-pre:p-4',
@@ -22,7 +24,7 @@ const Article: FC<ArticleProps> = ({children, className, meta}) => (
             className
         )}
     >
-        <ArticleHeader meta={meta} />
+        {meta && <ArticleHeader meta={meta} />}
         {children}
     </article>
 );
