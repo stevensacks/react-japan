@@ -1,22 +1,16 @@
-import {useLocation} from '@remix-run/react';
+import type {FC} from 'react';
 import DarkModeToggle from '~/components/DarkModeToggle';
-import HeaderNavLink from './HeaderNavLink';
+import LocaleSwitcher from '~/components/Header/LocaleSwitcher';
 
-const HeaderNav = () => {
-    const location = useLocation();
-    const isEnglish = location.pathname.startsWith('/en');
-
-    return (
-        <nav className="flex items-center gap-4">
-            <HeaderNavLink
-                className="font-semibold"
-                to={isEnglish ? '/' : '/en'}
-            >
-                {isEnglish ? '日本語' : 'EN'}
-            </HeaderNavLink>
-            <DarkModeToggle />
-        </nav>
-    );
+type HeaderNavProps = {
+    hideLocaleSwitcher?: boolean;
 };
+
+const HeaderNav: FC<HeaderNavProps> = ({hideLocaleSwitcher}) => (
+    <nav className="flex items-center gap-4">
+        {!hideLocaleSwitcher && <LocaleSwitcher />}
+        <DarkModeToggle />
+    </nav>
+);
 
 export default HeaderNav;

@@ -7,9 +7,10 @@ import styles from './styles.module.css';
 
 type HeaderProps = {
     className?: string;
+    hideLocaleSwitcher?: boolean;
 };
 
-const Header: FC<HeaderProps> = ({className}) => {
+const Header: FC<HeaderProps> = ({className, hideLocaleSwitcher}) => {
     const location = useLocation();
     const isEnglish = location.pathname.startsWith('/en');
 
@@ -28,7 +29,7 @@ const Header: FC<HeaderProps> = ({className}) => {
             >
                 <ReactJapanLogo className="w-36" />
             </Link>
-            <HeaderNav />
+            <HeaderNav hideLocaleSwitcher={hideLocaleSwitcher} />
         </header>
     );
 };

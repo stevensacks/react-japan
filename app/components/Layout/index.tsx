@@ -5,11 +5,12 @@ import Header from '~/components/Header';
 type LayoutProps = {
     children: ReactNode;
     className?: string;
+    hideLocaleSwitcher?: boolean;
 };
 
-const Layout: FC<LayoutProps> = ({children, className}) => (
+const Layout: FC<LayoutProps> = ({children, className, hideLocaleSwitcher}) => (
     <>
-        <Header />
+        <Header hideLocaleSwitcher={hideLocaleSwitcher} />
         <main className={twMerge('px-4 py-6 sm:px-6', className)}>
             {children}
         </main>
