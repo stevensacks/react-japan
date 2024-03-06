@@ -7,7 +7,7 @@ import Article from '~/components/Article';
 import Layout from '~/components/Layout';
 import type {ArticleMeta} from '~/types';
 import {formatAbbreviatedMonthDayYear} from '~/utils/date';
-import {sharedMetaTags} from '~/utils/http.server';
+import {sharedMetaTags} from '~/utils/http';
 
 export const loader = async () => {
     const meta: ArticleMeta = {

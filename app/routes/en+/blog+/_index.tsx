@@ -1,6 +1,6 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
 import Layout from '~/components/Layout';
-import {sharedMetaTags} from '~/utils/http.server';
+import {sharedMetaTags} from '~/utils/http';
 
 export const meta: MetaFunction = () => [
     {title: 'Blog - React Japan'},

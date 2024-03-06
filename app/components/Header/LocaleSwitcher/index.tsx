@@ -1,6 +1,6 @@
 import type {FC} from 'react';
 import {Link, useLocation, useMatches} from '@remix-run/react';
-import {stripTrailingSlash} from '~/utils/url';
+import {stripTrailingSlash} from '~/utils/http';
 
 const LocaleSwitcher: FC = () => {
     const location = useLocation();

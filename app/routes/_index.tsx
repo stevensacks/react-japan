@@ -1,7 +1,7 @@
 import type {MetaFunction} from '@remix-run/node';
 import Author from '~/components/Author';
 import Layout from '~/components/Layout';
-import {sharedMetaTags} from '~/utils/http.server';
+import {sharedMetaTags} from '~/utils/http';
 
 export const meta: MetaFunction = () => [
     {title: 'React Japan'},
