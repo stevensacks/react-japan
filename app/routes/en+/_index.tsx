@@ -1,10 +1,29 @@
-import type {MetaFunction} from '@remix-run/node';
+import type {LinksFunction, MetaFunction} from '@remix-run/node';
 import Author from '~/components/Author';
 import Layout from '~/components/Layout';
+import {sharedMetaTags} from '~/utils/http.server';
 
 export const meta: MetaFunction = () => [
     {title: 'React Japan'},
     {content: 'Welcome to React Japan!', name: 'description'},
+    {content: 'React Japan', name: 'twitter:title'},
+    {content: 'Welcome to React Japan!', name: 'twitter:description'},
+    {content: 'React Japan', name: 'og:title'},
+    {content: 'Welcome to React Japan!', name: 'og:description'},
+    ...sharedMetaTags,
+];
+
+export const links: LinksFunction = () => [
+    {
+        href: 'https://react-japan.dev',
+        hreflang: 'ja',
+        rel: 'alternate',
+    },
+    {
+        href: 'https://react-japan.dev/en',
+        hreflang: 'en',
+        rel: 'alternate',
+    },
 ];
 
 const Index = () => (
