@@ -1,7 +1,9 @@
 import {addons} from '@storybook/preview-api';
 import type {Preview} from '@storybook/react';
+import {themes} from '@storybook/theming';
 import isChromatic from 'chromatic/isChromatic';
 import {DARK_MODE_EVENT_NAME} from 'storybook-dark-mode';
+import brandImage from '../public/favicon-32x32.png';
 import chromatic from './decorators/chromatic';
 import viewport from './viewport';
 import '~/styles/tailwind.css';
@@ -27,6 +29,22 @@ const preview: Preview = {
             matchers: {
                 color: /(background|color)$/i,
                 date: /Date$/,
+            },
+        },
+        darkMode: {
+            dark: {
+                ...themes.dark,
+                brandImage,
+                brandTarget: '_blank',
+                brandTitle: 'React Japan',
+                brandUrl: 'https://react-japan.dev',
+            },
+            light: {
+                ...themes.light,
+                brandImage,
+                brandTarget: '_blank',
+                brandTitle: 'React Japan',
+                brandUrl: 'https://react-japan.dev',
             },
         },
         layout: 'fullscreen',

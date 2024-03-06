@@ -1,5 +1,5 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
-import Author from '~/components/Author';
+import AuthorBlock from 'app/components/AuthorBlock';
 import Layout from '~/components/Layout';
 import {sharedMetaTags} from '~/utils/http';
 
@@ -69,7 +69,7 @@ const Index = () => (
         </p>
         <hr className="my-0" />
         <div className="flex flex-col gap-8 py-4">
-            <Author
+            <AuthorBlock
                 className="flex-1"
                 github="https://github.com/stevensacks"
                 image="/authors/steven.jpg"
@@ -77,7 +77,7 @@ const Index = () => (
                 name="Steven Sacks"
                 role="React Engineer / Architect"
             />
-            <Author
+            <AuthorBlock
                 className="flex-1"
                 github="https://github.com/takahero"
                 image="/authors/takahiro.jpg"

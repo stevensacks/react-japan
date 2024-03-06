@@ -4,7 +4,7 @@ import Header from '../index';
 
 const meta: Meta = {
     component: Header,
-    decorators: [stubs.remix()],
+    decorators: [stubs.state(), stubs.remix()],
     parameters: {
         controls: {hideNoControlsWarning: true},
     },

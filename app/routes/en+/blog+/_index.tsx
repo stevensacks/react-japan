@@ -1,4 +1,5 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
+import ArticlesList from '~/components/ArticlesList';
 import Layout from '~/components/Layout';
 import {sharedMetaTags} from '~/utils/http';
 
@@ -27,7 +28,9 @@ export const links: LinksFunction = () => [
 
 const Blog = () => (
     <Layout>
-        <h1 className="text-4xl font-semibold">Blog</h1>
+        <div className="container mx-auto md:max-w-[40rem]">
+            <ArticlesList articles={[]} className="mt-4" />
+        </div>
     </Layout>
 );
 

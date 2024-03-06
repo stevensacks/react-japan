@@ -6,7 +6,7 @@ import {isSupportedTheme} from './theme';
 const themeStorage = createCookieSessionStorage({
     cookie: {
         httpOnly: true,
-        name: 'hafh-theme',
+        name: 'react-japan-theme',
         path: '/',
         sameSite: 'lax',
         secrets: [env.SESSION_SECRET],

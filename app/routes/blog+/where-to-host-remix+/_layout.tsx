@@ -17,9 +17,9 @@ export const loader = async () => {
         },
         date: formatAbbreviatedMonthDayYear(new Date('2023-10-31'), 'ja'),
         description:
-            'Should you host your Remix app on a serverless provider like Vercel, Fastly, Netlify, Cloudflare, or AWS Lambda? Or a long-lived server like Fly, Render, Railway, or DigitalOcean? This guide will help you choose the right hosting option for your app.',
+            'Remixアプリは、Vercel、Fastly、Netlify、Cloudflare、AWS Lambdaのようなサーバーレスプロバイダーでホストすべきでしょうか？それともFly、Render、Railway、DigitalOceanのような長寿命サーバーでしょうか？このガイドは、あなたのアプリに適したホスティングオプションを選択するのに役立ちます。',
         sourceUrl: 'https://www.jacobparis.com/content/where-to-host-remix',
-        title: 'Where to host your Remix app in 2024',
+        title: '2024年、Remixアプリはどこでホスティングされる？',
     };
 
     return json({meta});

@@ -1,5 +1,7 @@
+import {faLeftLong} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {json, type LinksFunction, type MetaFunction} from '@remix-run/node';
-import {Outlet, useLoaderData} from '@remix-run/react';
+import {Link, Outlet, useLoaderData} from '@remix-run/react';
 import Article from '~/components/Article';
 import Layout from '~/components/Layout';
 import type {ArticleMeta} from '~/types';
@@ -53,6 +55,18 @@ export const links: LinksFunction = () => [
         rel: 'alternate',
     },
 ];
+
+export const handle = {
+    breadcrumb: () => (
+        <Link
+            className="plain-link hover:text-red-600 hover:underline dark:hover:text-red-500"
+            to="/blog"
+        >
+            <FontAwesomeIcon icon={faLeftLong} />
+            &nbsp; 戻る
+        </Link>
+    ),
+};
 
 const RemixVsNextLayout = () => {
     const data = useLoaderData<typeof loader>();
