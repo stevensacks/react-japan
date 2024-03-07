@@ -1,10 +1,6 @@
 import type {FC} from 'react';
 import {cssBundleHref} from '@remix-run/css-bundle';
-import type {
-    LinksFunction,
-    LoaderFunctionArgs,
-    MetaFunction,
-} from '@remix-run/node';
+import type {LinksFunction, LoaderFunctionArgs} from '@remix-run/node';
 import {json} from '@remix-run/node';
 import {Outlet, useLoaderData} from '@remix-run/react';
 import {twJoin} from 'tailwind-merge';
@@ -38,14 +34,6 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
         }
     );
 };
-
-export const meta: MetaFunction = () => [
-    {content: '/assets/logo1080.png', name: 'image'},
-    {content: '/assets/logo1080.png', name: 'og:image'},
-    {content: '/assets/logo1080.png', name: 'twitter:image'},
-    {content: 'summary', name: 'twitter:card'},
-    {content: 'React Japan', name: 'og:site_name'},
-];
 
 export const links: LinksFunction = () => {
     const preloadedFonts = [

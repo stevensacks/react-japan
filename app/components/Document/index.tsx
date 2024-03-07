@@ -26,6 +26,11 @@ const Document: FC<DocumentProps> = ({
                 content="width=device-width,initial-scale=1"
                 name="viewport"
             />
+            <meta content="React Japan" name="og:site_name" />
+            <meta content="summary" name="twitter:card" />
+            <meta content="/assets/logo1080.png" name="image" />
+            <meta content="/assets/logo1080.png" name="og:image" />
+            <meta content="/assets/logo1080.png" name="twitter:image" />
             <Meta />
             <Links />
             <ThemeHead isSsrTheme={isSsrTheme} />
