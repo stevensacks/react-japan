@@ -1,7 +1,6 @@
 import type {MetaFunction} from '@remix-run/node';
 import AuthorBlock from 'app/components/AuthorBlock';
 import Layout from '~/components/Layout';
-import {sharedMetaTags} from '~/utils/http';
 
 export const meta: MetaFunction = () => [
     {title: 'React Japan'},
@@ -10,7 +9,6 @@ export const meta: MetaFunction = () => [
     {content: 'React Japanへようこそ', name: 'twitter:description'},
     {content: 'React Japan', name: 'og:title'},
     {content: 'React Japanへようこそ', name: 'og:description'},
-    ...sharedMetaTags,
 ];
 
 const Index = () => (

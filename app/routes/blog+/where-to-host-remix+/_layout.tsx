@@ -7,7 +7,6 @@ import Article from '~/components/Article';
 import Layout from '~/components/Layout';
 import type {ArticleMeta} from '~/types';
 import {formatAbbreviatedMonthDayYear} from '~/utils/date';
-import {sharedMetaTags} from '~/utils/http';
 
 export const loader = async () => {
     const meta: ArticleMeta = {
@@ -41,7 +40,6 @@ export const meta: MetaFunction<typeof loader> = ({data}) => {
         {content: title, name: 'og:title'},
         {content: data?.meta.description, name: 'og:description'},
         {content: 'article', name: 'og:type'},
-        ...sharedMetaTags,
     ];
 };
 

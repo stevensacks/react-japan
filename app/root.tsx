@@ -1,6 +1,10 @@
 import type {FC} from 'react';
 import {cssBundleHref} from '@remix-run/css-bundle';
-import type {LinksFunction, LoaderFunctionArgs} from '@remix-run/node';
+import type {
+    LinksFunction,
+    LoaderFunctionArgs,
+    MetaFunction,
+} from '@remix-run/node';
 import {json} from '@remix-run/node';
 import {Outlet, useLoaderData} from '@remix-run/react';
 import {twJoin} from 'tailwind-merge';
@@ -35,6 +39,14 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
     );
 };
 
+export const meta: MetaFunction = () => [
+    {content: '/assets/logo1080.png', name: 'image'},
+    {content: '/assets/logo1080.png', name: 'og:image'},
+    {content: '/assets/logo1080.png', name: 'twitter:image'},
+    {content: 'summary', name: 'twitter:card'},
+    {content: 'React Japan', name: 'og:site_name'},
+];
+
 export const links: LinksFunction = () => {
     const preloadedFonts = [
         'inter-roman-latin-var.woff2',
@@ -46,6 +58,24 @@ export const links: LinksFunction = () => {
     return [
         {href: tailwind, rel: 'stylesheet'},
         ...(cssBundleHref ? [{href: cssBundleHref, rel: 'stylesheet'}] : []),
+        {
+            href: '/apple-touch-icon.png',
+            rel: 'apple-touch-icon',
+            sizes: '180x180',
+        },
+        {
+            href: '/favicon-32x32.png',
+            rel: 'icon',
+            sizes: '32x32',
+            type: 'image/png',
+        },
+        {
+            href: '/favicon-16x16.png',
+            rel: 'icon',
+            sizes: '16x16',
+            type: 'image/png',
+        },
+        {href: '/site.webmanifest', rel: 'manifest'},
         ...preloadedFonts.map((font) => ({
             as: 'font',
             href: `/fonts/${font}`,

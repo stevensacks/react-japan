@@ -3,7 +3,6 @@ import ArticlesList from '~/components/ArticlesList';
 import Layout from '~/components/Layout';
 import type {ArticleMeta} from '~/types';
 import {formatAbbreviatedMonthDayYear} from '~/utils/date';
-import {sharedMetaTags} from '~/utils/http';
 
 export const meta: MetaFunction = () => [
     {title: 'ブログ - React Japan'},
@@ -12,7 +11,6 @@ export const meta: MetaFunction = () => [
     {content: '記事', name: 'twitter:description'},
     {content: 'ブログ - React Japan', name: 'og:title'},
     {content: '記事', name: 'og:description'},
-    ...sharedMetaTags,
 ];
 
 export const links: LinksFunction = () => [

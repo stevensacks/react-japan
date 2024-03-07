@@ -1,7 +1,6 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
 import ArticlesList from '~/components/ArticlesList';
 import Layout from '~/components/Layout';
-import {sharedMetaTags} from '~/utils/http';
 
 export const meta: MetaFunction = () => [
     {title: 'Blog - React Japan'},
@@ -10,7 +9,6 @@ export const meta: MetaFunction = () => [
     {content: 'Articles', name: 'twitter:description'},
     {content: 'Blog - React Japan', name: 'og:title'},
     {content: 'Articles', name: 'og:description'},
-    ...sharedMetaTags,
 ];
 
 export const links: LinksFunction = () => [
