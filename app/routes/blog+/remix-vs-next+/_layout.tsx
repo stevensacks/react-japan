@@ -17,6 +17,7 @@ export const loader = async () => {
         description: 'RemixとNext.jsの客観的比較',
         sourceUrl: 'https://remix.run/blog/remix-vs-next',
         title: 'RemixとNext.js',
+        to: '/blog/remix-vs-next',
     };
 
     return json({meta});

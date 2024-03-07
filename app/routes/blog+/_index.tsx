@@ -1,5 +1,5 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
-import ArticlesList from '~/components/ArticlesList';
+import ArticlesGrid from 'app/components/ArticlesGrid';
 import Layout from '~/components/Layout';
 import type {ArticleMeta} from '~/types';
 import {formatAbbreviatedMonthDayYear} from '~/utils/date';
@@ -29,6 +29,20 @@ export const links: LinksFunction = () => [
 const articles: Array<ArticleMeta> = [
     {
         author: {
+            image: '/authors/ryan-florence.png',
+            name: 'Ryan Florence',
+            nameKana: 'ライアン・フローレンス',
+            role: 'Remix Staff',
+        },
+        date: formatAbbreviatedMonthDayYear(new Date('2022-01-11'), 'ja'),
+        description: 'RemixとNext.jsの客観的比較',
+        image: '/assets/articles/remix-vs-next/header.jpg',
+        tags: ['Remix'],
+        title: 'RemixとNext.JS',
+        to: 'remix-vs-next',
+    },
+    {
+        author: {
             image: '/authors/jacob-paris.jpg',
             name: 'Jacob Paris',
             nameKana: 'ジェイコブ・パリス',
@@ -37,28 +51,16 @@ const articles: Array<ArticleMeta> = [
         date: formatAbbreviatedMonthDayYear(new Date('2023-10-31'), 'ja'),
         description:
             'Remixアプリは、Vercel、Fastly、Netlify、Cloudflare、AWS Lambdaのようなサーバーレスプロバイダーでホストすべきでしょうか？それともFly、Render、Railway、DigitalOceanのような長寿命サーバーでしょうか？このガイドは、あなたのアプリに適したホスティングオプションを選択するのに役立ちます。',
+        image: '/assets/blog/where-to-host-remix.jpg',
+        tags: ['Remix', 'DevOps'],
         title: '2024年、Remixアプリはどこでホスティングされる？',
         to: 'where-to-host-remix',
-    },
-    {
-        author: {
-            image: '/authors/ryan-florence.png',
-            name: 'Ryan Florence',
-            nameKana: 'ライアン・フローレンス',
-            role: 'Remix Team',
-        },
-        date: formatAbbreviatedMonthDayYear(new Date('2022-01-11'), 'ja'),
-        description: 'RemixとNext.jsの客観的比較',
-        title: 'RemixとNext.JS',
-        to: 'remix-vs-next',
     },
 ];
 
 const Blog = () => (
     <Layout>
-        <div className="container mx-auto md:max-w-[40rem]">
-            <ArticlesList articles={articles} className="mt-4" />
-        </div>
+        <ArticlesGrid articles={articles} className="mt-4" />
     </Layout>
 );
 

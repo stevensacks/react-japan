@@ -19,6 +19,7 @@ export const loader = async () => {
             'Remixアプリは、Vercel、Fastly、Netlify、Cloudflare、AWS Lambdaのようなサーバーレスプロバイダーでホストすべきでしょうか？それともFly、Render、Railway、DigitalOceanのような長寿命サーバーでしょうか？このガイドは、あなたのアプリに適したホスティングオプションを選択するのに役立ちます。',
         sourceUrl: 'https://www.jacobparis.com/content/where-to-host-remix',
         title: '2024年、Remixアプリはどこでホスティングされる？',
+        to: '/blog/where-to-host-remix',
     };
 
     return json({meta});
