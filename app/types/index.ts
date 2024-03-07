@@ -1,3 +1,5 @@
+import type {To} from '@remix-run/router';
+
 export type Maybe<T> = T | null | undefined;
 
 export type Author = {
@@ -12,7 +14,9 @@ export type ArticleMeta = {
     author: Author;
     date: string;
     description: string;
+    image?: string;
     sourceUrl?: string;
+    tags?: Array<string>;
     title: string;
-    to?: string;
+    to: To;
 };

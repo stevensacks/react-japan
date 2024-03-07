@@ -1,5 +1,5 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
-import ArticlesList from '~/components/ArticlesList';
+import ArticlesGrid from 'app/components/ArticlesGrid';
 import Layout from '~/components/Layout';
 
 export const meta: MetaFunction = () => [
@@ -27,7 +27,7 @@ export const links: LinksFunction = () => [
 const Blog = () => (
     <Layout>
         <div className="container mx-auto md:max-w-[40rem]">
-            <ArticlesList articles={[]} className="mt-4" />
+            <ArticlesGrid articles={[]} className="mt-4" />
         </div>
     </Layout>
 );
