@@ -28,9 +28,18 @@ const Document: FC<DocumentProps> = ({
             />
             <meta content="React Japan" name="og:site_name" />
             <meta content="summary" name="twitter:card" />
-            <meta content="./assets/logo1080.png" name="image" />
-            <meta content="./assets/logo1080.png" name="og:image" />
-            <meta content="./assets/logo1080.png" name="twitter:image" />
+            <meta
+                content="https:/react-japan.dev/assets/logo1080.png"
+                name="image"
+            />
+            <meta
+                content="https:/react-japan.dev/assets/logo1080.png"
+                name="og:image"
+            />
+            <meta
+                content="https:/react-japan.dev/assets/logo1080.png"
+                name="twitter:image"
+            />
             <Meta />
             <Links />
             <ThemeHead isSsrTheme={isSsrTheme} />
