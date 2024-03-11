@@ -29,26 +29,24 @@ export const loader = async () => {
     return parseArticles(data.data);
 };
 
-export const meta: MetaFunction = () => [
-    {title: 'ブログ - React Japan'},
-    {
-        content:
-            'React Japanへようこそ！このブログではReactの開発, そして特にRemixフレームワークにフォーカスを当てて、研究 & 考察していきます。',
-        name: 'description',
-    },
-    {content: 'ブログ - React Japan', name: 'twitter:title'},
-    {
-        content:
-            'React Japanへようこそ！このブログではReactの開発, そして特にRemixフレームワークにフォーカスを当てて、研究 & 考察していきます。',
-        name: 'twitter:description',
-    },
-    {content: 'ブログ - React Japan', name: 'og:title'},
-    {
-        content:
-            'React Japanへようこそ！このブログではReactの開発, そして特にRemixフレームワークにフォーカスを当てて、研究 & 考察していきます。',
-        name: 'og:description',
-    },
-];
+export const meta: MetaFunction = () => {
+    const title = 'ブログ';
+    const description =
+        'React Japanへようこそ！このブログではReactの開発, そして特にRemixフレームワークにフォーカスを当てて、研究 & 考察していきます。';
+    const image = 'https:/react-japan.dev/assets/logo1080.png';
+
+    return [
+        {title: `${title} - React Japan`},
+        {content: description, name: 'description'},
+        {content: title, name: 'twitter:title'},
+        {content: description, name: 'twitter:description'},
+        {content: title, name: 'og:title'},
+        {content: description, name: 'og:description'},
+        {content: image, name: 'image'},
+        {content: image, name: 'og:image'},
+        {content: image, name: 'twitter:image'},
+    ];
+};
 
 export const links: LinksFunction = () => [
     {
