@@ -1,22 +1,31 @@
-import type {To} from '@remix-run/router';
-
 export type Maybe<T> = T | null | undefined;
 
 export type Author = {
-    href?: string;
+    id: number;
     image: string;
     name: string;
     nameKana?: string;
     role?: string;
 };
 
+export type Tag = {
+    id: number;
+    name: string;
+    slug: string;
+};
+
 export type ArticleMeta = {
     author: Author;
     date: string;
-    description: string;
-    image?: string;
+    excerpt: string;
+    hero?: string;
+    id: number;
+    slug: string;
     sourceUrl?: string;
-    tags?: Array<string>;
+    tags?: Array<Tag>;
     title: string;
-    to: To;
+};
+
+export type Article = ArticleMeta & {
+    content: string;
 };

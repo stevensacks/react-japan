@@ -15,6 +15,12 @@ export default meta;
 
 export const Default: StoryFn = () => (
     <div className="p-4">
-        <Tags tags={['React', 'Remix', 'DevOps', 'Workflow']} />
+        <Tags
+            tags={[
+                {id: 1, name: 'React', slug: 'react'},
+                {id: 2, name: 'Remix', slug: 'remix'},
+                {id: 3, name: 'DevOps', slug: 'devops'},
+            ]}
+        />
     </div>
 );

@@ -1,34 +1,43 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
-import ArticlesGrid from 'app/components/ArticlesGrid';
 import Layout from '~/components/Layout';
 
 export const meta: MetaFunction = () => [
     {title: 'Blog - React Japan'},
-    {content: 'Articles', name: 'description'},
+    {
+        content:
+            'Welcome to React Japan, where we delve into React development, with a special focus on the Remix framework.',
+        name: 'description',
+    },
     {content: 'Blog - React Japan', name: 'twitter:title'},
-    {content: 'Articles', name: 'twitter:description'},
+    {
+        content:
+            'Welcome to React Japan, where we delve into React development, with a special focus on the Remix framework.',
+        name: 'twitter:description',
+    },
     {content: 'Blog - React Japan', name: 'og:title'},
-    {content: 'Articles', name: 'og:description'},
+    {
+        content:
+            'Welcome to React Japan, where we delve into React development, with a special focus on the Remix framework.',
+        name: 'og:description',
+    },
 ];
 
 export const links: LinksFunction = () => [
     {
         href: 'https://react-japan.dev/blog/en',
-        hreflang: 'en',
+        hrefLang: 'en',
         rel: 'alternate',
     },
     {
         href: 'https://react-japan.dev/blog/',
-        hreflang: 'ja',
+        hrefLang: 'ja',
         rel: 'alternate',
     },
 ];
 
 const Blog = () => (
     <Layout>
-        <div className="container mx-auto md:max-w-[40rem]">
-            <ArticlesGrid articles={[]} className="mt-4" />
-        </div>
+        <div />
     </Layout>
 );
 

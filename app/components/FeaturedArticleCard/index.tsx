@@ -4,13 +4,13 @@ import {twJoin} from 'tailwind-merge';
 import type {ArticleMeta} from '~/types';
 
 type FeaturedArticleCardProps = {
+    article: ArticleMeta;
     className?: string;
-    meta: ArticleMeta;
 };
 
 const FeaturedArticleCard: FC<FeaturedArticleCardProps> = ({
+    article: {author, date, hero, slug, title},
     className,
-    meta: {author, date, image, title, to},
 }) => (
     <Link
         className={twJoin(
@@ -18,12 +18,12 @@ const FeaturedArticleCard: FC<FeaturedArticleCardProps> = ({
             className
         )}
         prefetch="intent"
-        to={to}
+        to={`/blog/${slug}`}
     >
         <img
             alt={title}
             className="absolute inset-0 -z-10 size-full object-cover"
-            src={image}
+            src={hero}
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black to-60%" />
         <div className="flex flex-wrap items-center gap-2 text-sm text-white">

@@ -21,10 +21,10 @@ const ArticlesGrid: FC<ArticlesGridProps> = ({
             className
         )}
     >
-        {articles.map((meta) =>
+        {articles.map((article) =>
             isFeatured ?
-                <FeaturedArticleCard key={meta.title} meta={meta} />
-            :   <ArticleCard key={meta.title} meta={meta} />
+                <FeaturedArticleCard key={article.id} article={article} />
+            :   <ArticleCard key={article.id} article={article} />
         )}
     </div>
 );

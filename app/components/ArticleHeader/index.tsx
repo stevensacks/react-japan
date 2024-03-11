@@ -1,14 +1,14 @@
 import type {FC} from 'react';
 import {useMatches} from '@remix-run/react';
 import {twJoin} from 'tailwind-merge';
-import type {ArticleMeta} from '~/types';
+import type {Article} from '~/types';
 
 type ArticleHeaderProps = {
-    meta: ArticleMeta;
+    article: Article;
 };
 
 const ArticleHeader: FC<ArticleHeaderProps> = ({
-    meta: {author, date, sourceUrl, title},
+    article: {author, date, hero, sourceUrl, title},
 }) => {
     const matches = useMatches();
     // @ts-ignore
@@ -17,11 +17,16 @@ const ArticleHeader: FC<ArticleHeaderProps> = ({
     return (
         <header className="not-prose space-y-6">
             {linkToParent?.()}
+            {hero && (
+                <figure className="overflow-hidden rounded-lg border border-grey-100 dark:border-grey-800">
+                    <img alt={title} src={hero} />
+                </figure>
+            )}
             <div className="flex items-center gap-4">
                 <img
                     alt={author.name}
                     className={twJoin(
-                        'rounded-full border border-grey-300 dark:border-grey-500',
+                        'rounded-full border border-grey-100 dark:border-grey-800',
                         sourceUrl ? 'size-14' : 'size-12'
                     )}
                     src={author.image}
