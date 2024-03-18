@@ -76,7 +76,7 @@ const Index = () => {
             >
                 {hasArticles && (
                     <section className="col-span-1 md:col-span-6 lg:col-span-5 xl:col-span-4">
-                        <h1 className="text-2xl font-semibold">
+                        <h1 className="text-3xl font-semibold">
                             Featured Articles
                         </h1>
                         <ArticlesGrid
@@ -93,7 +93,7 @@ const Index = () => {
                     )}
                 >
                     {hasArticles && <hr className="md:hidden" />}
-                    <h1>About</h1>
+                    <h1 className="not-prose text-3xl font-semibold">About</h1>
                     <p>
                         Welcome to React Japan, where we delve into&nbsp;
                         <a

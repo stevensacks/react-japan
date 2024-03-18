@@ -1,10 +1,9 @@
-import {addons} from '@storybook/preview-api';
 import type {Preview} from '@storybook/react';
 import {themes} from '@storybook/theming';
 import isChromatic from 'chromatic/isChromatic';
-import {DARK_MODE_EVENT_NAME} from 'storybook-dark-mode';
-import brandImage from '../public/favicon-32x32.png';
 import chromatic from './decorators/chromatic';
+import logoDark from './static/logo-dark.png';
+import logoLight from './static/logo-light.png';
 import viewport from './viewport';
 import '~/styles/tailwind.css';
 
@@ -21,7 +20,6 @@ const isChromaticSnapshot =
 const preview: Preview = {
     decorators: isChromaticSnapshot ? [chromatic] : [],
     parameters: {
-        actions: {argTypesRegex: '^on[A-Z].*'},
         chromatic: {viewports: [1280]},
         controls: {
             expanded: false,
@@ -34,41 +32,25 @@ const preview: Preview = {
         darkMode: {
             dark: {
                 ...themes.dark,
-                brandImage,
+                brandImage: logoDark,
                 brandTarget: '_blank',
                 brandTitle: 'React Japan',
                 brandUrl: 'https://react-japan.dev',
             },
+            darkClass: ['dark', 'bg-grey-900', 'text-white'],
             light: {
                 ...themes.light,
-                brandImage,
+                brandImage: logoLight,
                 brandTarget: '_blank',
                 brandTitle: 'React Japan',
                 brandUrl: 'https://react-japan.dev',
             },
+            lightClass: ['light', 'bg-white', 'text-grey-900'],
+            stylePreview: true,
         },
         layout: 'fullscreen',
         viewport,
     },
 };
-
-if (!isChromaticSnapshot) {
-    // listen for dark mode toggle changes
-    const channel = addons.getChannel();
-    channel.on(DARK_MODE_EVENT_NAME, (isDark: boolean) => {
-        // eslint-disable-next-line unicorn/prevent-abbreviations
-        const docsStory = document.querySelector('.docs-story');
-
-        if (isDark) {
-            document.documentElement.classList.add('dark');
-            docsStory?.classList.add('bg-grey-900');
-            docsStory?.classList.add('text-white');
-        } else {
-            document.documentElement.classList.remove('dark');
-            docsStory?.classList.remove('bg-grey-900');
-            docsStory?.classList.remove('text-white');
-        }
-    });
-}
 
 export default preview;

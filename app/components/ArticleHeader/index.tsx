@@ -8,7 +8,7 @@ type ArticleHeaderProps = {
 };
 
 const ArticleHeader: FC<ArticleHeaderProps> = ({
-    article: {author, date, hero, sourceUrl, title},
+    article: {author, date, hero, sourceUrl, tags, title},
 }) => {
     const matches = useMatches();
     // @ts-ignore
@@ -50,9 +50,7 @@ const ArticleHeader: FC<ArticleHeaderProps> = ({
                     )}
                 </div>
             </div>
-            <h1 className="mb-0 text-lg font-bold sm:text-2xl md:text-4xl">
-                {title}
-            </h1>
+            <h1 className="mb-0 text-2xl font-bold md:text-4xl">{title}</h1>
         </header>
     );
 };

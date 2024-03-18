@@ -76,7 +76,9 @@ const Index = () => {
             >
                 {hasArticles && (
                     <section className="col-span-1 md:col-span-6 lg:col-span-5 xl:col-span-4">
-                        <h1 className="text-4xl font-semibold">注目記事</h1>
+                        <h1 className="text-2xl font-semibold sm:text-3xl">
+                            注目記事
+                        </h1>
                         <ArticlesGrid
                             articles={articles}
                             className="mt-4 !grid-cols-1"
@@ -92,7 +94,9 @@ const Index = () => {
                     )}
                 >
                     {hasArticles && <hr className="md:hidden" />}
-                    <h1>このブログについて</h1>
+                    <h1 className="not-prose text-2xl font-semibold sm:text-3xl">
+                        このブログについて
+                    </h1>
                     <p>
                         React Japanへようこそ！このブログでは&nbsp;
                         <a
