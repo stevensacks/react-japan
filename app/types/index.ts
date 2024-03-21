@@ -18,7 +18,7 @@ export type ArticleMeta = {
     author: Author;
     date: string;
     excerpt: string;
-    hero?: string;
+    hero: string;
     id: number;
     slug: string;
     sourceUrl?: string;

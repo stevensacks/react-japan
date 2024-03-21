@@ -26,7 +26,9 @@ export const loader = async () => {
         throw new Response('Error loading data from strapi', {status: 500});
     }
 
-    return parseArticles(data.data);
+    return parseArticles(data.data).sort((a) =>
+        a.slug === 'remix-vs-next' ? -1 : 1
+    );
 };
 
 export const meta: MetaFunction = () => {

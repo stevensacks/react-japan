@@ -20,10 +20,13 @@ type StrapiArticle = {
     id: number;
 };
 
+const getImagePath = (path: string) =>
+    process.env.NODE_ENV === 'development' ? new URL(path).pathname : path;
+
 export const parseArticle = (article: StrapiArticle): Article => ({
     author: {
         id: article.attributes.author.data.id,
-        image: article.attributes.author.data.attributes.image,
+        image: getImagePath(article.attributes.author.data.attributes.image),
         name: article.attributes.author.data.attributes.name,
         nameKana: article.attributes.author.data.attributes.nameKana,
         role: article.attributes.author.data.attributes.role,
@@ -31,7 +34,7 @@ export const parseArticle = (article: StrapiArticle): Article => ({
     content: article.attributes.content,
     date: article.attributes.date,
     excerpt: article.attributes.excerpt,
-    hero: article.attributes.hero,
+    hero: getImagePath(article.attributes.hero),
     id: article.id,
     slug: article.attributes.slug,
     sourceUrl: article.attributes.sourceUrl,
