@@ -43,6 +43,10 @@ export const loader = async ({params}: LoaderFunctionArgs) => {
 export const meta: MetaFunction<typeof loader> = ({data}) => [
     {title: `${data?.title} - React Japan`},
     {content: data?.excerpt, name: 'description'},
+    {
+        content: `https://react-japan.dev/en/blog/${data?.slug}`,
+        name: 'canonical',
+    },
     {content: data?.title, name: 'twitter:title'},
     {content: data?.excerpt, name: 'twitter:description'},
     {content: data?.title, name: 'og:title'},

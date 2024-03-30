@@ -23,6 +23,13 @@ export default async function handleRequest(
 ) {
     const url = new URL(request.url);
 
+    // disallow www subdomain
+    if (url.host.includes('www.')) {
+        url.host = url.host.replace('www.', '');
+
+        return Response.redirect(url.toString(), 301);
+    }
+
     // remove trailing slash on all routes
     if (url.pathname !== '/' && url.pathname.endsWith('/')) {
         url.pathname = url.pathname.slice(0, -1);

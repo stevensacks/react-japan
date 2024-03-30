@@ -42,6 +42,7 @@ export const meta: MetaFunction = () => {
     return [
         {title},
         {content: description, name: 'description'},
+        {content: 'https://react-japan.dev', name: 'canonical'},
         {content: title, name: 'twitter:title'},
         {content: description, name: 'twitter:description'},
         {content: title, name: 'og:title'},
