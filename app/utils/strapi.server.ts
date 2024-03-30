@@ -16,6 +16,7 @@ type StrapiArticle = {
     attributes: Omit<Article, 'author' | 'id' | 'tags'> & {
         author: StrapiAuthor;
         tags: {data: Array<StrapiTag>};
+        updatedAt: string;
     };
     id: number;
 };
@@ -48,3 +49,13 @@ export const parseArticle = (article: StrapiArticle): Article => ({
 
 export const parseArticles = (articles: Array<StrapiArticle>): Array<Article> =>
     articles.map(parseArticle);
+
+export type ArticleEntry = {
+    slug: string;
+    updatedAt: string;
+};
+
+export const parseEntries = (
+    articles: Array<StrapiArticle>
+): Array<ArticleEntry> =>
+    articles.map(({attributes: {slug, updatedAt}}) => ({slug, updatedAt}));
