@@ -16,62 +16,62 @@ import 'dotenv/config';
 const ABORT_DELAY = 5000;
 
 export default async function handleRequest(
-    request: Request,
-    responseStatusCode: number,
-    responseHeaders: Headers,
-    remixContext: EntryContext
+  request: Request,
+  responseStatusCode: number,
+  responseHeaders: Headers,
+  remixContext: EntryContext
 ) {
-    const url = new URL(request.url);
+  const url = new URL(request.url);
 
-    // disallow www subdomain
-    if (url.host.includes('www.')) {
-        url.host = url.host.replace('www.', '');
+  // disallow www subdomain
+  if (url.host.includes('www.')) {
+    url.host = url.host.replace('www.', '');
 
-        return Response.redirect(url.toString(), 301);
-    }
+    return Response.redirect(url.toString(), 301);
+  }
 
-    // remove trailing slash on all routes
-    if (url.pathname !== '/' && url.pathname.endsWith('/')) {
-        url.pathname = url.pathname.slice(0, -1);
+  // remove trailing slash on all routes
+  if (url.pathname !== '/' && url.pathname.endsWith('/')) {
+    url.pathname = url.pathname.slice(0, -1);
 
-        return Response.redirect(url.toString(), 301);
-    }
+    return Response.redirect(url.toString(), 301);
+  }
 
-    const userAgent = request.headers.get('user-agent') ?? '';
+  const userAgent = request.headers.get('user-agent') ?? '';
 
-    const callbackName = isbot(userAgent) ? 'onAllReady' : 'onShellReady';
+  const callbackName = isbot(userAgent) ? 'onAllReady' : 'onShellReady';
 
-    return new Promise((resolve, reject) => {
-        let didError = false;
+  return new Promise((resolve, reject) => {
+    let didError = false;
 
-        const {abort, pipe} = renderToPipeableStream(
-            <RemixServer context={remixContext} url={request.url} />,
-            {
-                [callbackName]: () => {
-                    const body = new PassThrough();
+    const {abort, pipe} = renderToPipeableStream(
+      <RemixServer context={remixContext} url={request.url} />,
+      {
+        [callbackName]: () => {
+          const body = new PassThrough();
 
-                    responseHeaders.set('Content-Type', 'text/html');
+          responseHeaders.set('Content-Type', 'text/html');
 
-                    resolve(
-                        new Response(createReadableStreamFromReadable(body), {
-                            headers: responseHeaders,
-                            status: didError ? 500 : responseStatusCode,
-                        })
-                    );
+          resolve(
+            new Response(createReadableStreamFromReadable(body), {
+              headers: responseHeaders,
+              status: didError ? 500 : responseStatusCode,
+            })
+          );
 
-                    pipe(body);
-                },
-                onError(error: unknown) {
-                    didError = true;
+          pipe(body);
+        },
+        onError(error: unknown) {
+          didError = true;
 
-                    console.error(error);
-                },
-                onShellError(error: unknown) {
-                    reject(error);
-                },
-            }
-        );
+          console.error(error);
+        },
+        onShellError(error: unknown) {
+          reject(error);
+        },
+      }
+    );
 
-        setTimeout(abort, ABORT_DELAY);
-    });
+    setTimeout(abort, ABORT_DELAY);
+  });
 }

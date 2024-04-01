@@ -5,28 +5,28 @@ import FeaturedArticleCard from '~/components/FeaturedArticleCard';
 import type {ArticleMeta} from '~/types';
 
 type ArticlesGridProps = {
-    articles: Array<ArticleMeta>;
-    className?: string;
-    isFeatured?: boolean;
+  articles: Array<ArticleMeta>;
+  className?: string;
+  isFeatured?: boolean;
 };
 
 const ArticlesGrid: FC<ArticlesGridProps> = ({
-    articles,
-    className,
-    isFeatured,
+  articles,
+  className,
+  isFeatured,
 }) => (
-    <div
-        className={twJoin(
-            'grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3',
-            className
-        )}
-    >
-        {articles.map((article) =>
-            isFeatured ?
-                <FeaturedArticleCard key={article.id} article={article} />
-            :   <ArticleCard key={article.id} article={article} />
-        )}
-    </div>
+  <div
+    className={twJoin(
+      'grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3',
+      className
+    )}
+  >
+    {articles.map((article) =>
+      isFeatured ?
+        <FeaturedArticleCard key={article.id} article={article} />
+      : <ArticleCard key={article.id} article={article} />
+    )}
+  </div>
 );
 
 export default ArticlesGrid;

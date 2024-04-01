@@ -10,52 +10,52 @@ const getEntry = ({slug, updatedAt}: ArticleEntry, locale = '') => `
 `;
 
 export const loader = async () => {
-    const jaResponse = await fetch(
-        `${process.env.STRAPI_BASE_URL}/api/articles`,
-        {
-            headers: {
-                Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-                'Content-Type': 'application/json',
-            },
-            method: 'GET',
-        }
-    );
-
-    if (!jaResponse.ok) {
-        throw jaResponse;
+  const jaResponse = await fetch(
+    `${process.env.STRAPI_BASE_URL}/api/articles`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      method: 'GET',
     }
+  );
 
-    const enResponse = await fetch(
-        `${process.env.STRAPI_BASE_URL}/api/articles?locale=en`,
-        {
-            headers: {
-                Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-                'Content-Type': 'application/json',
-            },
-            method: 'GET',
-        }
-    );
+  if (!jaResponse.ok) {
+    throw jaResponse;
+  }
 
-    if (!enResponse.ok) {
-        throw enResponse;
+  const enResponse = await fetch(
+    `${process.env.STRAPI_BASE_URL}/api/articles?locale=en`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      method: 'GET',
     }
+  );
 
-    const jaData = await jaResponse.json();
-    const enData = await enResponse.json();
+  if (!enResponse.ok) {
+    throw enResponse;
+  }
 
-    if (jaData.error || enData.error) {
-        throw new Response('Error loading data from strapi', {status: 500});
-    }
+  const jaData = await jaResponse.json();
+  const enData = await enResponse.json();
 
-    const jaEntries = parseEntries(jaData.data)
-        .map((entry) => getEntry(entry))
-        .join('');
+  if (jaData.error || enData.error) {
+    throw new Response('Error loading data from strapi', {status: 500});
+  }
 
-    const enEntries = parseEntries(enData.data)
-        .map((entry) => getEntry(entry, 'en/'))
-        .join('');
+  const jaEntries = parseEntries(jaData.data)
+    .map((entry) => getEntry(entry))
+    .join('');
 
-    const content = `
+  const enEntries = parseEntries(enData.data)
+    .map((entry) => getEntry(entry, 'en/'))
+    .join('');
+
+  const content = `
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -84,14 +84,13 @@ export const loader = async () => {
         </urlset>
     `.trim();
 
-    return new Response(content, {
-        headers: {
-            'Cache-Control':
-                'public, s-maxage=86400, stale-while-revalidate=21600',
-            'Content-Type': 'application/xml',
-            encoding: 'UTF-8',
-            'xml-version': '1.0',
-        },
-        status: 200,
-    });
+  return new Response(content, {
+    headers: {
+      'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=21600',
+      'Content-Type': 'application/xml',
+      encoding: 'UTF-8',
+      'xml-version': '1.0',
+    },
+    status: 200,
+  });
 };

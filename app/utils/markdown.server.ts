@@ -10,20 +10,20 @@ import remarkRehype from 'remark-rehype';
 import {unified} from 'unified';
 
 export const convertMarkdownToHtml = async (markdown: string) =>
-    String(
-        await unified()
-            .use(remarkParse)
-            .use(remarkFrontmatter)
-            .use(remarkMdxFrontmatter)
-            .use(remarkGfm)
-            .use(remarkRehype, {allowDangerousHtml: true})
-            .use(rehypeSlug)
-            .use(rehypeAutolinkHeadings)
-            .use(rehypePrettyCode, {
-                defaultLang: 'typescript',
-                keepBackground: true,
-                theme: 'monokai',
-            })
-            .use(rehypeStringify, {allowDangerousHtml: true})
-            .process(markdown)
-    );
+  String(
+    await unified()
+      .use(remarkParse)
+      .use(remarkFrontmatter)
+      .use(remarkMdxFrontmatter)
+      .use(remarkGfm)
+      .use(remarkRehype, {allowDangerousHtml: true})
+      .use(rehypeSlug)
+      .use(rehypeAutolinkHeadings)
+      .use(rehypePrettyCode, {
+        defaultLang: 'typescript',
+        keepBackground: true,
+        theme: 'monokai',
+      })
+      .use(rehypeStringify, {allowDangerousHtml: true})
+      .process(markdown)
+  );

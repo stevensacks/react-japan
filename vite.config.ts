@@ -5,23 +5,23 @@ import {defineConfig} from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-    plugins: [
-        remixDevTools(),
-        remix({
-            ignoredRouteFiles: ['**/*'],
-            routes: async (defineRoutes) =>
-                flatRoutes('routes', defineRoutes, {
-                    ignoredRouteFiles: [
-                        '.*',
-                        '**/*.css',
-                        '**/*.test.{ts,tsx}',
-                        '**/__*.*',
-                    ],
-                }),
+  plugins: [
+    remixDevTools(),
+    remix({
+      ignoredRouteFiles: ['**/*'],
+      routes: async (defineRoutes) =>
+        flatRoutes('routes', defineRoutes, {
+          ignoredRouteFiles: [
+            '.*',
+            '**/*.css',
+            '**/*.test.{ts,tsx}',
+            '**/__*.*',
+          ],
         }),
-        tsconfigPaths(),
-    ],
-    server: {
-        open: true,
-    },
+    }),
+    tsconfigPaths(),
+  ],
+  server: {
+    open: true,
+  },
 });

@@ -1,7 +1,7 @@
-import type { ActionFunction, LoaderFunctionArgs } from '@remix-run/node';
-import { createRemixStub } from '@remix-run/testing';
-import type { ReactRenderer } from '@storybook/react';
-import type { PartialStoryFn } from '@storybook/types';
+import type {ActionFunction, LoaderFunctionArgs} from '@remix-run/node';
+import {createRemixStub} from '@remix-run/testing';
+import type {ReactRenderer} from '@storybook/react';
+import type {PartialStoryFn} from '@storybook/types';
 
 type RemixDecoratorOptions = {
   action?: ActionFunction;
@@ -22,7 +22,7 @@ const decorator =
       },
     ]);
 
-    return remixStub({ initialEntries: [path] });
+    return remixStub({initialEntries: [path]});
   };
 
 export default decorator;

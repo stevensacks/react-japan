@@ -4,27 +4,27 @@ import type {RemixNavLinkProps} from '@remix-run/react/dist/components';
 import {twJoin} from 'tailwind-merge';
 
 type HeaderNavLinkProps = RemixNavLinkProps & {
-    className?: string;
+  className?: string;
 };
 
 const HeaderNavLink: FC<HeaderNavLinkProps> = ({
-    children,
-    className,
-    ...props
+  children,
+  className,
+  ...props
 }) => (
-    <NavLink
-        className={({isActive}) =>
-            twJoin(
-                'plain-link text-sm sm:text-base',
-                isActive ? 'text-red-700' : 'text-grey-900 dark:text-grey-100',
-                className
-            )
-        }
-        prefetch="intent"
-        {...props}
-    >
-        {children}
-    </NavLink>
+  <NavLink
+    className={({isActive}) =>
+      twJoin(
+        'plain-link text-sm sm:text-base',
+        isActive ? 'text-red-700' : 'text-grey-900 dark:text-grey-100',
+        className
+      )
+    }
+    prefetch="intent"
+    {...props}
+  >
+    {children}
+  </NavLink>
 );
 
 export default HeaderNavLink;

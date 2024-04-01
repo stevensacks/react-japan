@@ -1,17 +1,17 @@
 .background {
-    background: linear-gradient(
-        to bottom,
-        rgb(255 255 255 / 100%) 75%,
-        rgb(229 255 255 / 0%) 100%
-    );
+  background: linear-gradient(
+    to bottom,
+    rgb(255 255 255 / 100%) 75%,
+    rgb(229 255 255 / 0%) 100%
+  );
 }
 
 :global(.dark) {
-    .background {
-        background: linear-gradient(
-            to bottom,
-            rgb(18 18 18 / 100%) 75%,
-            rgb(18 18 18 / 0%) 100%
-        );
-    }
+  .background {
+    background: linear-gradient(
+      to bottom,
+      rgb(18 18 18 / 100%) 75%,
+      rgb(18 18 18 / 0%) 100%
+    );
+  }
 }
