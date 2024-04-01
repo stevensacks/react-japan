@@ -47,8 +47,13 @@ export const loader = async () => {
         throw new Response('Error loading data from strapi', {status: 500});
     }
 
-    const jaEntries = parseEntries(jaData.data);
-    const enEntries = parseEntries(enData.data);
+    const jaEntries = parseEntries(jaData.data)
+        .map((entry) => getEntry(entry))
+        .join('');
+
+    const enEntries = parseEntries(enData.data)
+        .map((entry) => getEntry(entry, 'en/'))
+        .join('');
 
     const content = `
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -74,15 +79,15 @@ export const loader = async () => {
                 <lastmod>2024-03-30T20:00:00Z</lastmod>
                 <priority>0.9</priority>
             </url>
-            ${jaEntries.map((entry) => getEntry(entry)).join('')}
-            ${enEntries.map((entry) => getEntry(entry, 'en/')).join('')}
+            ${jaEntries}
+            ${enEntries}
         </urlset>
     `.trim();
 
     return new Response(content, {
         headers: {
-            /*'Cache-Control':
-                'public, s-maxage=86400, stale-while-revalidate=21600',*/
+            'Cache-Control':
+                'public, s-maxage=86400, stale-while-revalidate=21600',
             'Content-Type': 'application/xml',
             encoding: 'UTF-8',
             'xml-version': '1.0',
