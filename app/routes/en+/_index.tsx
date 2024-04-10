@@ -8,7 +8,7 @@ import {DRAFTS, parseArticles} from '~/utils/strapi.server';
 
 export const loader = async () => {
   const response = await fetch(
-    `${process.env.STRAPI_BASE_URL}/api/articles?pagination[pageSize]=3&locale=en&populate=author,hero,tags&populate[1]=author.image${DRAFTS}`,
+    `${process.env.STRAPI_BASE_URL}/api/articles?pagination[pageSize]=5&locale=en&populate=author,hero,tags&populate[1]=author.image${DRAFTS}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
@@ -78,7 +78,11 @@ const Index = () => {
         {hasArticles && (
           <section className="col-span-1 md:col-span-6 lg:col-span-5 xl:col-span-4">
             <h1 className="text-3xl font-semibold">Featured Articles</h1>
-            <ArticlesGrid articles={articles} className="mt-4 !grid-cols-1" />
+            <ArticlesGrid
+              articles={articles}
+              className="mt-4 !grid-cols-1"
+              isFeatured={true}
+            />
           </section>
         )}
         <section

@@ -8,7 +8,7 @@ import {DRAFTS, parseArticles} from '~/utils/strapi.server';
 
 export const loader = async () => {
   const response = await fetch(
-    `${process.env.STRAPI_BASE_URL}/api/articles?pagination[pageSize]=3&populate=author,hero,tags&populate[1]=author.image${DRAFTS}`,
+    `${process.env.STRAPI_BASE_URL}/api/articles?pagination[pageSize]=5&populate=author,hero,tags&populate[1]=author.image${DRAFTS}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
