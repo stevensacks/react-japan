@@ -59,3 +59,6 @@ export const parseEntries = (
   articles: Array<StrapiArticle>
 ): Array<ArticleEntry> =>
   articles.map(({attributes: {slug, updatedAt}}) => ({slug, updatedAt}));
+
+export const DRAFTS =
+  process.env.NODE_ENV === 'development' ? '&publicationState=preview' : '';

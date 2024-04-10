@@ -2,11 +2,11 @@ import type {LinksFunction, MetaFunction} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import ArticlesGrid from '~/components/ArticlesGrid';
 import Layout from '~/components/Layout';
-import {parseArticles} from '~/utils/strapi.server';
+import {DRAFTS, parseArticles} from '~/utils/strapi.server';
 
 export const loader = async () => {
   const response = await fetch(
-    `${process.env.STRAPI_BASE_URL}/api/articles?populate=author,hero,tags&populate[1]=author.image`,
+    `${process.env.STRAPI_BASE_URL}/api/articles?populate=author,hero,tags&populate[1]=author.image${DRAFTS}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,

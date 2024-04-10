@@ -8,13 +8,13 @@ import ArticleBlock from '~/components/ArticleBlock';
 import BackButton from '~/components/BackButton';
 import Layout from '~/components/Layout';
 import {convertMarkdownToHtml} from '~/utils/markdown.server';
-import {parseArticle} from '~/utils/strapi.server';
+import {DRAFTS, parseArticle} from '~/utils/strapi.server';
 
 export const loader = async ({params}: LoaderFunctionArgs) => {
   const {slug} = params;
 
   const response = await fetch(
-    `${process.env.STRAPI_BASE_URL}/api/articles/${slug}?locale=en&populate=author,hero,tags&populate[1]=author.image`,
+    `${process.env.STRAPI_BASE_URL}/api/articles/${slug}?locale=en&populate=author,hero,tags&populate[1]=author.image${DRAFTS}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
