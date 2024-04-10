@@ -27,6 +27,7 @@ const articles: Array<ArticleMeta> = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis augue eget efficitur rutrum. Proin eu rutrum orci.',
     hero: '~/../assets/articles/remix-vs-next/header.jpg',
     id: 1,
+    locale: 'en',
     slug: 'example-1',
     tags: [
       {id: 1, name: 'Remix', slug: 'remix'},
@@ -46,6 +47,7 @@ const articles: Array<ArticleMeta> = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis augue eget efficitur rutrum. Proin eu rutrum orci. Nunc quis maximus purus. Cras iaculis, odio nec faucibus dictum, arcu nunc mollis tortor, sit amet finibus lacus felis vel est. ',
     hero: '~/../.storybook/static/example.jpg',
     id: 2,
+    locale: 'en',
     slug: 'example-2',
     tags: [
       {id: 1, name: 'Remix', slug: 'remix'},
@@ -65,6 +67,7 @@ const articles: Array<ArticleMeta> = [
     excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     hero: '~/../.storybook/static/example2.webp',
     id: 3,
+    locale: 'en',
     slug: 'example-3',
     tags: [{id: 1, name: 'Remix', slug: 'remix'}],
     title: 'Neque porro quisquam est qui',

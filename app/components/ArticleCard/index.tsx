@@ -11,13 +11,13 @@ type ArticleCardProps = {
 };
 
 const ArticleCard: FC<ArticleCardProps> = ({
-  article: {author, date, excerpt, hero, slug, tags, title},
+  article: {author, date, excerpt, hero, locale, slug, tags, title},
   className,
 }) => (
   <Link
     className={twJoin('plain-link group block space-y-3', className)}
     prefetch="intent"
-    to={`/blog/${slug}`}
+    to={`/${locale === 'en' ? 'en/' : ''}blog/${slug}`}
   >
     {hero && (
       <figure className="overflow-hidden rounded-lg border border-grey-100 dark:border-grey-800">
@@ -34,7 +34,7 @@ const ArticleCard: FC<ArticleCardProps> = ({
     <p className="text-pretty text-sm text-grey-600 dark:text-grey-200">
       {excerpt}
     </p>
-    <AuthorBlock author={author} />
+    <AuthorBlock author={author} locale={locale} />
   </Link>
 );
 

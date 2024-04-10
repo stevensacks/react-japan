@@ -84,7 +84,8 @@ const Index = () => {
         <section
           className={twJoin(
             'prose mx-auto text-pretty dark:prose-invert',
-            hasArticles && 'md:col-span-6 lg:col-span-7 xl:col-span-8'
+            hasArticles &&
+              'max-w-none md:col-span-6 lg:col-span-7 xl:col-span-8'
           )}
         >
           {hasArticles && <hr className="md:hidden" />}

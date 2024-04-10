@@ -9,6 +9,7 @@ type AuthorBlockProps = {
   className?: string;
   github?: string;
   linkedin?: string;
+  locale?: string;
 };
 
 const AuthorBlock: FC<AuthorBlockProps> = ({
@@ -16,6 +17,7 @@ const AuthorBlock: FC<AuthorBlockProps> = ({
   className,
   github,
   linkedin,
+  locale,
 }) => (
   <div className={twMerge('flex items-center gap-3', className)}>
     <div className="overflow-hidden rounded-full border border-grey-100 dark:border-grey-800">
@@ -24,7 +26,7 @@ const AuthorBlock: FC<AuthorBlockProps> = ({
     <div className={twJoin('space-y-1')}>
       <div className={twJoin('text-sm font-semibold leading-none')}>
         <span>{name} </span>
-        {nameKana && (
+        {locale === 'ja' && nameKana && (
           <>
             <br className={twJoin('hidden')} />
             <span

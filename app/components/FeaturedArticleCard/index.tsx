@@ -9,7 +9,7 @@ type FeaturedArticleCardProps = {
 };
 
 const FeaturedArticleCard: FC<FeaturedArticleCardProps> = ({
-  article: {author, date, hero, slug, title},
+  article: {author, date, hero, locale, slug, title},
   className,
 }) => (
   <Link
@@ -18,7 +18,7 @@ const FeaturedArticleCard: FC<FeaturedArticleCardProps> = ({
       className
     )}
     prefetch="intent"
-    to={`/blog/${slug}`}
+    to={`/${locale === 'en' ? 'en/' : ''}blog/${slug}`}
   >
     <img
       alt={title}

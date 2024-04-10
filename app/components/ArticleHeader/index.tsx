@@ -8,7 +8,7 @@ type ArticleHeaderProps = {
 };
 
 const ArticleHeader: FC<ArticleHeaderProps> = ({
-  article: {author, date, hero, sourceUrl, tags, title},
+  article: {author, date, hero, locale, sourceUrl, title},
 }) => {
   const matches = useMatches();
   // @ts-ignore
@@ -32,8 +32,15 @@ const ArticleHeader: FC<ArticleHeaderProps> = ({
           src={author.image}
         />
         <div className="pt-0.5 leading-none">
-          <div className="font-semibold text-grey-700 dark:text-grey-200">
-            {author.name}
+          <div>
+            <span className="font-semibold text-grey-700 dark:text-grey-200">
+              {author.name}
+            </span>
+            {locale === 'ja' && author.nameKana && (
+              <span className="ml-2 text-xs font-normal text-grey-600 dark:text-grey-300">
+                ({author.nameKana})
+              </span>
+            )}
           </div>
           <time className="text-sm text-grey-600 dark:text-grey-400">
             {date}

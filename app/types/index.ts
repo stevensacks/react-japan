@@ -20,6 +20,7 @@ export type ArticleMeta = {
   excerpt: string;
   hero: string;
   id: number;
+  locale: string;
   slug: string;
   sourceUrl?: string;
   tags?: Array<Tag>;
