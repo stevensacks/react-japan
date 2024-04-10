@@ -11,131 +11,131 @@ const LOCAL_STORAGE_KEY = 'theme';
 const ThemeStateContext = createContext<Theme>(undefined);
 
 const ThemeDispatchContext = createContext<
-    Dispatch<SetStateAction<Theme>> | undefined
+  Dispatch<SetStateAction<Theme>> | undefined
 >(undefined);
 
 export const useThemeState = (): Theme => useContext(ThemeStateContext);
 
 export const useThemeDispatch = (): Dispatch<SetStateAction<Theme>> => {
-    const context = useContext(ThemeDispatchContext);
+  const context = useContext(ThemeDispatchContext);
 
-    /* istanbul ignore next */
-    if (context === undefined) {
-        throw new Error(
-            'useThemeDispatch must be used within an ThemeStateProvider'
-        );
-    }
+  /* istanbul ignore next */
+  if (context === undefined) {
+    throw new Error(
+      'useThemeDispatch must be used within an ThemeStateProvider'
+    );
+  }
 
-    return context;
+  return context;
 };
 
 export const useTheme = (): [Theme, Dispatch<SetStateAction<Theme>>] => [
-    useThemeState(),
-    useThemeDispatch(),
+  useThemeState(),
+  useThemeDispatch(),
 ];
 
 const prefersDarkMQ = '(prefers-color-scheme: dark)';
 
 export const getPreferredTheme = (): Theme => {
-    if (typeof window === 'undefined') {
-        return null;
-    }
+  if (typeof window === 'undefined') {
+    return null;
+  }
 
-    const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+  const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
 
-    if (stored) {
-        return stored as Theme;
-    }
+  if (stored) {
+    return stored as Theme;
+  }
 
-    return window.matchMedia(prefersDarkMQ).matches ? 'dark' : 'light';
+  return window.matchMedia(prefersDarkMQ).matches ? 'dark' : 'light';
 };
 
 type ThemeProviderProps = {
-    children: ReactNode;
-    initialState: Theme;
+  children: ReactNode;
+  initialState: Theme;
 };
 
 export const ThemeProvider: FC<ThemeProviderProps> = ({
-    children,
-    initialState,
+  children,
+  initialState,
 }) => {
-    const [theme, setTheme] = useState<Theme | null>(() => {
-        // On the server, if we don't have a specified theme then we should
-        // return null and the clientThemeCode will set the theme for us
-        // before hydration. Then (during hydration), this code will get the same
-        // value that clientThemeCode got so hydration is happy.
-        if (initialState) {
-            if (themes.includes(initialState)) {
-                return initialState;
-            }
+  const [theme, setTheme] = useState<Theme | null>(() => {
+    // On the server, if we don't have a specified theme then we should
+    // return null and the clientThemeCode will set the theme for us
+    // before hydration. Then (during hydration), this code will get the same
+    // value that clientThemeCode got so hydration is happy.
+    if (initialState) {
+      if (themes.includes(initialState)) {
+        return initialState;
+      }
 
-            return null;
-        }
+      return null;
+    }
 
-        // there's no way for us to know what the theme should be in this context
-        // the client will have to figure it out before hydration.
-        if (typeof document === 'undefined') {
-            return null;
-        }
+    // there's no way for us to know what the theme should be in this context
+    // the client will have to figure it out before hydration.
+    if (typeof document === 'undefined') {
+      return null;
+    }
 
-        return getPreferredTheme();
-    });
+    return getPreferredTheme();
+  });
 
-    const persistTheme = useFetcher();
-    // TODO: remove this when persistTheme is memoized properly
-    const persistThemeRef = useRef(persistTheme);
-    useEffect(() => {
-        persistThemeRef.current = persistTheme;
-    }, [persistTheme]);
+  const persistTheme = useFetcher();
+  // TODO: remove this when persistTheme is memoized properly
+  const persistThemeRef = useRef(persistTheme);
+  useEffect(() => {
+    persistThemeRef.current = persistTheme;
+  }, [persistTheme]);
 
-    const mountRun = useRef(false);
+  const mountRun = useRef(false);
 
-    useEffect(() => {
-        if (!mountRun.current) {
-            mountRun.current = true;
+  useEffect(() => {
+    if (!mountRun.current) {
+      mountRun.current = true;
 
-            return;
-        }
+      return;
+    }
 
-        if (!theme) {
-            return;
-        }
+    if (!theme) {
+      return;
+    }
 
-        localStorage.setItem(LOCAL_STORAGE_KEY, theme);
+    localStorage.setItem(LOCAL_STORAGE_KEY, theme);
 
-        persistThemeRef.current.submit(
-            {theme},
-            {action: 'action/set-theme', method: 'POST'}
-        );
-    }, [theme]);
-
-    useEffect(() => {
-        const mediaQuery = window.matchMedia(prefersDarkMQ);
-
-        const onChange = () => {
-            setTheme(mediaQuery.matches ? 'dark' : 'light');
-            localStorage.setItem(
-                LOCAL_STORAGE_KEY,
-                mediaQuery.matches ? 'dark' : 'light'
-            );
-        };
-
-        mediaQuery.addEventListener('change', onChange);
-
-        return () => mediaQuery.removeEventListener('change', onChange);
-    }, []);
-
-    return (
-        <ThemeStateContext.Provider value={theme}>
-            <ThemeDispatchContext.Provider value={setTheme}>
-                {children}
-            </ThemeDispatchContext.Provider>
-        </ThemeStateContext.Provider>
+    persistThemeRef.current.submit(
+      {theme},
+      {action: 'action/set-theme', method: 'POST'}
     );
+  }, [theme]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(prefersDarkMQ);
+
+    const onChange = () => {
+      setTheme(mediaQuery.matches ? 'dark' : 'light');
+      localStorage.setItem(
+        LOCAL_STORAGE_KEY,
+        mediaQuery.matches ? 'dark' : 'light'
+      );
+    };
+
+    mediaQuery.addEventListener('change', onChange);
+
+    return () => mediaQuery.removeEventListener('change', onChange);
+  }, []);
+
+  return (
+    <ThemeStateContext.Provider value={theme}>
+      <ThemeDispatchContext.Provider value={setTheme}>
+        {children}
+      </ThemeDispatchContext.Provider>
+    </ThemeStateContext.Provider>
+  );
 };
 
 const themeMatchMedia = `const theme = window.matchMedia(${JSON.stringify(
-    prefersDarkMQ
+  prefersDarkMQ
 )}).matches
     ? 'dark'
     : 'light';`;
@@ -168,38 +168,38 @@ const clientThemeCode = `
 })();`;
 
 type ThemeHeadProps = {
-    isSsrTheme: boolean;
+  isSsrTheme: boolean;
 };
 
 export const ThemeHead: FC<ThemeHeadProps> = ({isSsrTheme}) => {
-    const theme = useThemeState();
+  const theme = useThemeState();
 
-    return (
-        <>
-            {/*
+  return (
+    <>
+      {/*
                 On the server, "theme" might be `null`, so clientThemeCode ensures that
                 this is correct before hydration.
             */}
-            <meta
-                content={theme === 'light' ? 'light dark' : 'dark light'}
-                name="color-scheme"
-            />
-            {/*
+      <meta
+        content={theme === 'light' ? 'light dark' : 'dark light'}
+        name="color-scheme"
+      />
+      {/*
                 If we know what the theme is from the server then we don't need
                 to do fancy tricks prior to hydration to make things match.
               */}
-            {isSsrTheme ? null : (
-                <script
-                    // NOTE: we cannot use type="module" because that automatically makes
-                    // the script "defer". That doesn't work for us because we need
-                    // this script to run synchronously before the rest of the document
-                    // is finished loading.
-                    dangerouslySetInnerHTML={{__html: clientThemeCode}}
-                />
-            )}
-        </>
-    );
+      {isSsrTheme ? null : (
+        <script
+          // NOTE: we cannot use type="module" because that automatically makes
+          // the script "defer". That doesn't work for us because we need
+          // this script to run synchronously before the rest of the document
+          // is finished loading.
+          dangerouslySetInnerHTML={{__html: clientThemeCode}}
+        />
+      )}
+    </>
+  );
 };
 
 export const isSupportedTheme = (value: unknown): value is Theme =>
-    typeof value === 'string' && themes.includes(value);
+  typeof value === 'string' && themes.includes(value);

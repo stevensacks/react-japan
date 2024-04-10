@@ -100,7 +100,7 @@ const shared = {
                 rule: '^((is|has|can|show|hide|no)[A-Z]([A-Za-z0-9]?)+|(show|hide|disabled|required))',
             },
         ],
-        'react/button-has-type': 'error',
+        'react/button-has-type': 'off',
         'react/require-default-props': 'off',
         'react/jsx-boolean-value': ['error', 'always'],
         'react/jsx-filename-extension': 'off',

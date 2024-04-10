@@ -1,5 +1,5 @@
-import { describe, expect, test } from 'vitest';
-import { range } from '../array';
+import {describe, expect, test} from 'vitest';
+import {range} from '../array';
 
 describe('array', () => {
   test('range should work', () => {

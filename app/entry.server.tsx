@@ -16,55 +16,62 @@ import 'dotenv/config';
 const ABORT_DELAY = 5000;
 
 export default async function handleRequest(
-    request: Request,
-    responseStatusCode: number,
-    responseHeaders: Headers,
-    remixContext: EntryContext
+  request: Request,
+  responseStatusCode: number,
+  responseHeaders: Headers,
+  remixContext: EntryContext
 ) {
-    const url = new URL(request.url);
+  const url = new URL(request.url);
 
-    // remove trailing slash on all routes
-    if (url.pathname !== '/' && url.pathname.endsWith('/')) {
-        url.pathname = url.pathname.slice(0, -1);
+  // disallow www subdomain
+  if (url.host.includes('www.')) {
+    url.host = url.host.replace('www.', '');
 
-        return Response.redirect(url.toString(), 301);
-    }
+    return Response.redirect(url.toString(), 301);
+  }
 
-    const userAgent = request.headers.get('user-agent') ?? '';
+  // remove trailing slash on all routes
+  if (url.pathname !== '/' && url.pathname.endsWith('/')) {
+    url.pathname = url.pathname.slice(0, -1);
 
-    const callbackName = isbot(userAgent) ? 'onAllReady' : 'onShellReady';
+    return Response.redirect(url.toString(), 301);
+  }
 
-    return new Promise((resolve, reject) => {
-        let didError = false;
+  const userAgent = request.headers.get('user-agent') ?? '';
 
-        const {abort, pipe} = renderToPipeableStream(
-            <RemixServer context={remixContext} url={request.url} />,
-            {
-                [callbackName]: () => {
-                    const body = new PassThrough();
+  const callbackName = isbot(userAgent) ? 'onAllReady' : 'onShellReady';
 
-                    responseHeaders.set('Content-Type', 'text/html');
+  return new Promise((resolve, reject) => {
+    let didError = false;
 
-                    resolve(
-                        new Response(createReadableStreamFromReadable(body), {
-                            headers: responseHeaders,
-                            status: didError ? 500 : responseStatusCode,
-                        })
-                    );
+    const {abort, pipe} = renderToPipeableStream(
+      <RemixServer context={remixContext} url={request.url} />,
+      {
+        [callbackName]: () => {
+          const body = new PassThrough();
 
-                    pipe(body);
-                },
-                onError(error: unknown) {
-                    didError = true;
+          responseHeaders.set('Content-Type', 'text/html');
 
-                    console.error(error);
-                },
-                onShellError(error: unknown) {
-                    reject(error);
-                },
-            }
-        );
+          resolve(
+            new Response(createReadableStreamFromReadable(body), {
+              headers: responseHeaders,
+              status: didError ? 500 : responseStatusCode,
+            })
+          );
 
-        setTimeout(abort, ABORT_DELAY);
-    });
+          pipe(body);
+        },
+        onError(error: unknown) {
+          didError = true;
+
+          console.error(error);
+        },
+        onShellError(error: unknown) {
+          reject(error);
+        },
+      }
+    );
+
+    setTimeout(abort, ABORT_DELAY);
+  });
 }

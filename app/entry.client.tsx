@@ -9,18 +9,18 @@ import {hydrateRoot} from 'react-dom/client';
 import {RemixBrowser} from '@remix-run/react';
 
 const hydrate = async () => {
-    startTransition(() => {
-        hydrateRoot(
-            document,
-            <StrictMode>
-                <RemixBrowser />
-            </StrictMode>
-        );
-    });
+  startTransition(() => {
+    hydrateRoot(
+      document,
+      <StrictMode>
+        <RemixBrowser />
+      </StrictMode>
+    );
+  });
 };
 
 if (window.requestIdleCallback) {
-    window.requestIdleCallback(hydrate);
+  window.requestIdleCallback(hydrate);
 } else {
-    window.setTimeout(hydrate, 1);
+  window.setTimeout(hydrate, 1);
 }

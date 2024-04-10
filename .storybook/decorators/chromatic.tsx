@@ -3,29 +3,28 @@ import type {ReactRenderer} from '@storybook/react';
 import type {DecoratorFunction} from '@storybook/types';
 
 const Chromatic: DecoratorFunction<ReactRenderer> = (storyFn, context) => {
-    const {parameters} = context;
+  const {parameters} = context;
 
-    return (
-        <>
-            <div
-                className="text-grey-900 relative bg-white"
-                style={{
-                    minHeight:
-                        parameters.chromatic?.excludeDark ? '100vh' : '50vh',
-                }}
-            >
-                {storyFn()}
-            </div>
-            {!parameters.chromatic?.excludeDark && (
-                <div
-                    className="bg-grey-900 dark relative text-white"
-                    style={{minHeight: '50vh'}}
-                >
-                    {storyFn()}
-                </div>
-            )}
-        </>
-    );
+  return (
+    <>
+      <div
+        className="relative bg-white text-grey-900"
+        style={{
+          minHeight: parameters.chromatic?.excludeDark ? '100vh' : '50vh',
+        }}
+      >
+        {storyFn()}
+      </div>
+      {!parameters.chromatic?.excludeDark && (
+        <div
+          className="dark relative bg-grey-900 text-white"
+          style={{minHeight: '50vh'}}
+        >
+          {storyFn()}
+        </div>
+      )}
+    </>
+  );
 };
 
 export default Chromatic;
