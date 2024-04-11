@@ -22,7 +22,7 @@ export const convertMarkdownToHtml = async (markdown: string) =>
       .use(rehypePrettyCode, {
         defaultLang: 'typescript',
         keepBackground: true,
-        theme: 'monokai',
+        theme: 'tokyo-night',
       })
       .use(rehypeStringify, {allowDangerousHtml: true})
       .process(markdown)
