@@ -35,6 +35,7 @@ export const parseArticle = (article: StrapiArticle): Article => ({
   content: article.attributes.content,
   date: article.attributes.date,
   excerpt: article.attributes.excerpt,
+  featured: article.attributes.featured,
   hero: getImagePath(article.attributes.hero),
   id: article.id,
   locale: article.attributes.locale,

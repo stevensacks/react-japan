@@ -30,9 +30,17 @@ const FeaturedArticleCard: FC<FeaturedArticleCardProps> = ({
       <time>{date}</time>
       <div className="text-grey-300">•</div>
       <div className="overflow-hidden rounded-full border border-grey-600">
-        <img alt={author.name} className="m-0 size-6" src={author.image} />
+        <img
+          alt={
+            locale === 'ja' && author.nameKana ? author.nameKana : author.name
+          }
+          className="m-0 size-6"
+          src={author.image}
+        />
       </div>
-      <div>{author.name}</div>
+      <div>
+        {locale === 'ja' && author.nameKana ? author.nameKana : author.name}
+      </div>
     </div>
     <h2 className="text-pretty text-lg font-semibold leading-tight text-white transition-colors duration-200 group-hover:text-red-500 dark:group-hover:text-red-500">
       {title}

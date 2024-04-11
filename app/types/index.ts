@@ -18,6 +18,7 @@ export type ArticleMeta = {
   author: Author;
   date: string;
   excerpt: string;
+  featured?: boolean;
   hero: string;
   id: number;
   locale: string;

@@ -8,7 +8,7 @@ import {DRAFTS, parseArticles} from '~/utils/strapi.server';
 
 export const loader = async () => {
   const response = await fetch(
-    `${process.env.STRAPI_BASE_URL}/api/articles?pagination[pageSize]=5&populate=author,hero,tags&populate[1]=author.image${DRAFTS}`,
+    `${process.env.STRAPI_BASE_URL}/api/articles?filters[featured][$eq]=true&pagination[pageSize]=4&populate=author,hero,tags&populate[1]=author.image${DRAFTS}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
@@ -28,8 +28,10 @@ export const loader = async () => {
     throw new Response('Error loading data from strapi', {status: 500});
   }
 
-  return parseArticles(data.data).sort((a) =>
-    a.slug === 'remix-vs-next' ? -1 : 1
+  return parseArticles(data.data).sort((a, b) =>
+    a.slug === 'remix-vs-next' ? -1
+    : new Date(a.date).getTime() < new Date(b.date).getTime() ? -1
+    : 1
   );
 };
 
