@@ -17,6 +17,7 @@ const config: StorybookConfig = {
     },
     '@storybook/addon-interactions',
     'storybook-dark-mode',
+    '@chromatic-com/storybook',
   ],
   docs: {
     autodocs: 'tag',
