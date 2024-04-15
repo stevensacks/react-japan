@@ -1,4 +1,4 @@
-import type {LinksFunction, MetaFunction} from '@remix-run/node';
+import type {MetaFunction} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import ArticlesGrid from '~/components/ArticlesGrid';
 import Layout from '~/components/Layout';
@@ -41,6 +41,18 @@ export const meta: MetaFunction = () => {
     {title: `${title} - React Japan`},
     {content: description, name: 'description'},
     {content: 'https://react-japan.dev/en/blog', name: 'canonical'},
+    {
+      href: 'https://react-japan.dev/blog',
+      hreflang: 'ja',
+      rel: 'alternate',
+      tagName: 'link',
+    },
+    {
+      href: 'https://react-japan.dev/en/blog',
+      hreflang: 'en',
+      rel: 'alternate',
+      tagName: 'link',
+    },
     {content: title, name: 'twitter:title'},
     {content: description, name: 'twitter:description'},
     {content: title, name: 'og:title'},
@@ -50,19 +62,6 @@ export const meta: MetaFunction = () => {
     {content: image, name: 'twitter:image'},
   ];
 };
-
-export const links: LinksFunction = () => [
-  {
-    href: 'https://react-japan.dev/blog/en',
-    hrefLang: 'en',
-    rel: 'alternate',
-  },
-  {
-    href: 'https://react-japan.dev/blog/',
-    hrefLang: 'ja',
-    rel: 'alternate',
-  },
-];
 
 const Blog = () => {
   const articles = useLoaderData<typeof loader>();

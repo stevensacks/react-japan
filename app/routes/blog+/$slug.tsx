@@ -1,8 +1,4 @@
-import type {
-  LinksFunction,
-  LoaderFunctionArgs,
-  MetaFunction,
-} from '@remix-run/node';
+import type {LoaderFunctionArgs, MetaFunction} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import ArticleBlock from '~/components/ArticleBlock';
 import BackButton from '~/components/BackButton';
@@ -44,6 +40,18 @@ export const meta: MetaFunction<typeof loader> = ({data}) => [
   {title: `${data?.title} - React Japan`},
   {content: data?.excerpt, name: 'description'},
   {content: `https://react-japan.dev/blog/${data?.slug}`, name: 'canonical'},
+  {
+    href: `https://react-japan.dev/blog/${data?.slug}`,
+    hreflang: 'ja',
+    rel: 'alternate',
+    tagName: 'link',
+  },
+  {
+    href: data?.sourceUrl || `https://react-japan.dev/en/blog/${data?.slug}`,
+    hreflang: 'en',
+    rel: 'alternate',
+    tagName: 'link',
+  },
   {content: data?.title, name: 'twitter:title'},
   {content: data?.excerpt, name: 'twitter:description'},
   {content: data?.title, name: 'og:title'},
@@ -51,19 +59,6 @@ export const meta: MetaFunction<typeof loader> = ({data}) => [
   {content: data?.hero, name: 'image'},
   {content: data?.hero, name: 'og:image'},
   {content: data?.hero, name: 'twitter:image'},
-];
-
-export const links: LinksFunction = () => [
-  {
-    href: 'https://react-japan.dev/blog/en',
-    hrefLang: 'en',
-    rel: 'alternate',
-  },
-  {
-    href: 'https://react-japan.dev/blog',
-    hrefLang: 'ja',
-    rel: 'alternate',
-  },
 ];
 
 export const handle = {

@@ -1,4 +1,4 @@
-import type {LinksFunction, MetaFunction} from '@remix-run/node';
+import type {MetaFunction} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import {twJoin} from 'tailwind-merge';
 import ArticlesGrid from '~/components/ArticlesGrid';
@@ -45,6 +45,18 @@ export const meta: MetaFunction = () => {
     {title},
     {content: description, name: 'description'},
     {content: 'https://react-japan.dev', name: 'canonical'},
+    {
+      href: 'https://react-japan.dev',
+      hreflang: 'ja',
+      rel: 'alternate',
+      tagName: 'link',
+    },
+    {
+      href: 'https://react-japan.dev/en',
+      hreflang: 'en',
+      rel: 'alternate',
+      tagName: 'link',
+    },
     {content: title, name: 'twitter:title'},
     {content: description, name: 'twitter:description'},
     {content: title, name: 'og:title'},
@@ -54,19 +66,6 @@ export const meta: MetaFunction = () => {
     {content: image, name: 'twitter:image'},
   ];
 };
-
-export const links: LinksFunction = () => [
-  {
-    href: 'https://react-japan.dev',
-    hrefLang: 'ja',
-    rel: 'alternate',
-  },
-  {
-    href: 'https://react-japan.dev/en',
-    hrefLang: 'en',
-    rel: 'alternate',
-  },
-];
 
 const Index = () => {
   const articles = useLoaderData<typeof loader>();
