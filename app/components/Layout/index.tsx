@@ -11,7 +11,9 @@ type LayoutProps = {
 const Layout: FC<LayoutProps> = ({children, className, hideLocaleSwitcher}) => (
   <>
     <Header hideLocaleSwitcher={hideLocaleSwitcher} />
-    <main className={twMerge('px-4 py-6 sm:px-6', className)}>{children}</main>
+    <main className={twMerge('px-4 pb-6 pt-4 sm:px-6', className)}>
+      {children}
+    </main>
   </>
 );
 

@@ -1,9 +1,11 @@
 import type {MetaFunction} from '@remix-run/node';
-import {useLoaderData} from '@remix-run/react';
+import {json} from '@remix-run/node';
+import {Link, useLoaderData} from '@remix-run/react';
 import {twJoin} from 'tailwind-merge';
 import ArticlesGrid from '~/components/ArticlesGrid';
 import AuthorBlock from '~/components/AuthorBlock';
 import Layout from '~/components/Layout';
+import {getLocalizedLinks} from '~/utils/http';
 import {DRAFTS, parseArticles} from '~/utils/strapi.server';
 
 export const loader = async () => {
@@ -28,11 +30,17 @@ export const loader = async () => {
     throw new Response('Error loading data from strapi', {status: 500});
   }
 
-  return parseArticles(data.data).sort((a, b) =>
+  const articles = parseArticles(data.data).sort((a, b) =>
     a.slug === 'remix-vs-next' ? -1
     : new Date(a.date).getTime() < new Date(b.date).getTime() ? -1
     : 1
   );
+
+  return json(articles, {
+    headers: {
+      'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=3600',
+    },
+  });
 };
 
 export const meta: MetaFunction = () => {
@@ -44,19 +52,7 @@ export const meta: MetaFunction = () => {
   return [
     {title},
     {content: description, name: 'description'},
-    {content: 'https://react-japan.dev/en', name: 'canonical'},
-    {
-      href: 'https://react-japan.dev',
-      hreflang: 'ja',
-      rel: 'alternate',
-      tagName: 'link',
-    },
-    {
-      href: 'https://react-japan.dev/en',
-      hreflang: 'en',
-      rel: 'alternate',
-      tagName: 'link',
-    },
+    ...getLocalizedLinks('', 'en'),
     {content: title, name: 'twitter:title'},
     {content: description, name: 'twitter:description'},
     {content: title, name: 'og:title'},
@@ -69,34 +65,37 @@ export const meta: MetaFunction = () => {
 
 const Index = () => {
   const articles = useLoaderData<typeof loader>();
-  const hasArticles = articles.length > 0;
 
   return (
     <Layout>
-      <div
-        className={twJoin(
-          hasArticles && 'grid grid-cols-1 gap-12 md:grid-cols-12'
-        )}
-      >
-        {hasArticles && (
-          <section className="col-span-1 md:col-span-6 lg:col-span-5 xl:col-span-4">
-            <h1 className="text-3xl font-semibold">Featured Articles</h1>
-            <ArticlesGrid
-              articles={articles}
-              className="mt-4 !grid-cols-1"
-              isFeatured={true}
-            />
-          </section>
-        )}
+      <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
+        <section className="col-span-1 md:col-span-6 lg:col-span-5 xl:col-span-4">
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-bold leading-none">
+              Featured Articles
+            </h1>
+            <Link
+              className="plain-link rounded-md bg-red-500 px-2 py-1 text-sm text-white hover:bg-red-600"
+              to="/en/blog"
+            >
+              All Articles
+            </Link>
+          </div>
+          <ArticlesGrid
+            articles={articles}
+            className="mt-4 !grid-cols-1"
+            isFeatured={true}
+          />
+        </section>
         <section
           className={twJoin(
             'prose mx-auto text-pretty dark:prose-invert',
-            hasArticles &&
-              'max-w-none md:col-span-6 lg:col-span-7 xl:col-span-8'
+
+            'max-w-none md:col-span-6 lg:col-span-7 xl:col-span-8'
           )}
         >
-          {hasArticles && <hr className="md:hidden" />}
-          <h1 className="not-prose text-3xl font-semibold">About</h1>
+          <hr className="md:hidden" />
+          <h1 className="not-prose text-2xl font-bold">About</h1>
           <p>
             Welcome to React Japan, where we delve into&nbsp;
             <a href="https://react.dev/" rel="noreferrer" target="_blank">

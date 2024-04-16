@@ -5,3 +5,22 @@ export const stripTrailingSlash = (url: string) => {
 
   return url;
 };
+
+export const getLocalizedLinks = (path = '', language = '') => [
+  {
+    content: `https://react-japan.dev${language ? '/' : ''}${language}${path}`,
+    name: 'canonical',
+  },
+  {
+    href: `https://react-japan.dev${path}`,
+    hrefLang: 'ja',
+    rel: 'alternate',
+    tagName: 'link',
+  },
+  {
+    href: `https://domain.com/en${path}`,
+    hrefLang: 'en',
+    rel: 'alternate',
+    tagName: 'link',
+  },
+];

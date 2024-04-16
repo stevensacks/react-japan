@@ -1,7 +1,9 @@
 import type {MetaFunction} from '@remix-run/node';
+import {json} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import ArticlesGrid from '~/components/ArticlesGrid';
 import Layout from '~/components/Layout';
+import {getLocalizedLinks} from '~/utils/http';
 import {DRAFTS, parseArticles} from '~/utils/strapi.server';
 
 export const loader = async () => {
@@ -26,9 +28,17 @@ export const loader = async () => {
     throw new Response('Error loading data from strapi', {status: 500});
   }
 
-  return parseArticles(data.data).sort((a) =>
-    a.slug === 'remix-vs-next' ? -1 : 1
+  const articles = parseArticles(data.data).sort((a, b) =>
+    a.slug === 'remix-vs-next' ? -1
+    : new Date(a.date).getTime() < new Date(b.date).getTime() ? -1
+    : 1
   );
+
+  return json(articles, {
+    headers: {
+      'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=3600',
+    },
+  });
 };
 
 export const meta: MetaFunction = () => {
@@ -40,19 +50,7 @@ export const meta: MetaFunction = () => {
   return [
     {title: `${title} - React Japan`},
     {content: description, name: 'description'},
-    {content: 'https://react-japan.dev/blog', name: 'canonical'},
-    {
-      href: 'https://react-japan.dev/blog',
-      hreflang: 'ja',
-      rel: 'alternate',
-      tagName: 'link',
-    },
-    {
-      href: 'https://react-japan.dev/en/blog',
-      hreflang: 'en',
-      rel: 'alternate',
-      tagName: 'link',
-    },
+    ...getLocalizedLinks('/blog'),
     {content: title, name: 'twitter:title'},
     {content: description, name: 'twitter:description'},
     {content: title, name: 'og:title'},

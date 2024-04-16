@@ -17,7 +17,7 @@ const Header: FC<HeaderProps> = ({className, hideLocaleSwitcher}) => {
   return (
     <header
       className={twJoin(
-        'sticky top-0 z-50 flex w-full items-center justify-between gap-4 px-4 py-2 sm:px-6 md:py-2',
+        'sticky top-0 z-50 flex w-full items-center justify-between gap-4 px-4 pb-4 pt-2 sm:px-6',
         styles.background,
         className
       )}

@@ -1,8 +1,10 @@
 import type {LoaderFunctionArgs, MetaFunction} from '@remix-run/node';
+import {json} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import ArticleBlock from '~/components/ArticleBlock';
 import BackButton from '~/components/BackButton';
 import Layout from '~/components/Layout';
+import {getLocalizedLinks} from '~/utils/http';
 import {convertMarkdownToHtml} from '~/utils/markdown.server';
 import {DRAFTS, parseArticle} from '~/utils/strapi.server';
 
@@ -33,25 +35,21 @@ export const loader = async ({params}: LoaderFunctionArgs) => {
   const article = parseArticle(data.data);
   const content = await convertMarkdownToHtml(article.content);
 
-  return {...article, content};
+  return json(
+    {...article, content},
+    {
+      headers: {
+        'Cache-Control':
+          'public, s-maxage=604800, stale-while-revalidate=86400',
+      },
+    }
+  );
 };
 
 export const meta: MetaFunction<typeof loader> = ({data}) => [
   {title: `${data?.title} - React Japan`},
   {content: data?.excerpt, name: 'description'},
-  {content: `https://react-japan.dev/blog/${data?.slug}`, name: 'canonical'},
-  {
-    href: `https://react-japan.dev/blog/${data?.slug}`,
-    hreflang: 'ja',
-    rel: 'alternate',
-    tagName: 'link',
-  },
-  {
-    href: data?.sourceUrl || `https://react-japan.dev/en/blog/${data?.slug}`,
-    hreflang: 'en',
-    rel: 'alternate',
-    tagName: 'link',
-  },
+  ...getLocalizedLinks(`/blog/${data?.slug}`),
   {content: data?.title, name: 'twitter:title'},
   {content: data?.excerpt, name: 'twitter:description'},
   {content: data?.title, name: 'og:title'},
