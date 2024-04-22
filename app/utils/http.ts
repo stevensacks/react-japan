@@ -14,13 +14,13 @@ export const getLocalizedLinks = (path = '', language = '', sourceUrl = '') => [
   },
   {
     href: `https://react-japan.dev${path}`,
-    hrefLang: 'ja',
+    hreflang: 'ja',
     rel: 'alternate',
     tagName: 'link',
   },
   {
     href: sourceUrl || `https://react-japan.dev/en${path}`,
-    hrefLang: 'en',
+    hreflang: 'en',
     rel: 'alternate',
     tagName: 'link',
   },
