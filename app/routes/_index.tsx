@@ -136,6 +136,7 @@ const Index = () => {
               }}
               className="flex-1"
               github="https://github.com/stevensacks"
+              locale="ja"
             />
             <AuthorBlock
               author={{
@@ -146,6 +147,7 @@ const Index = () => {
               }}
               className="flex-1"
               github="https://github.com/takahero"
+              locale="ja"
             />
           </div>
         </section>
