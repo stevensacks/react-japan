@@ -1,5 +1,4 @@
 import type {LoaderFunctionArgs, MetaFunction} from '@remix-run/node';
-import {json} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import ArticleBlock from '~/components/ArticleBlock';
 import BackButton from '~/components/BackButton';
@@ -32,18 +31,14 @@ export const loader = async ({params}: LoaderFunctionArgs) => {
     throw new Response('Error loading data from strapi', {status: 500});
   }
 
-  const article = parseArticle(data.data);
-  const content = await convertMarkdownToHtml(article.content);
+  try {
+    const article = parseArticle(data.data);
+    const content = await convertMarkdownToHtml(article.content);
 
-  return json(
-    {...article, content},
-    {
-      headers: {
-        'Cache-Control':
-          'public, s-maxage=604800, stale-while-revalidate=86400',
-      },
-    }
-  );
+    return {...article, content};
+  } catch {
+    throw new Response('', {status: 404, statusText: '見つかりません'});
+  }
 };
 
 export const meta: MetaFunction<typeof loader> = ({data}) => [

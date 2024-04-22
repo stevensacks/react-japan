@@ -1,5 +1,4 @@
 import type {MetaFunction} from '@remix-run/node';
-import {json} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import ArticlesGrid from '~/components/ArticlesGrid';
 import Layout from '~/components/Layout';
@@ -28,17 +27,11 @@ export const loader = async () => {
     throw new Response('Error loading data from strapi', {status: 500});
   }
 
-  const articles = parseArticles(data.data).sort((a, b) =>
+  return parseArticles(data.data).sort((a, b) =>
     a.slug === 'remix-vs-next' ? -1
     : new Date(a.date).getTime() < new Date(b.date).getTime() ? -1
     : 1
   );
-
-  return json(articles, {
-    headers: {
-      'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=3600',
-    },
-  });
 };
 
 export const meta: MetaFunction = () => {
@@ -66,7 +59,7 @@ const Blog = () => {
 
   return (
     <Layout>
-      <ArticlesGrid articles={articles} className="mt-4" />
+      <ArticlesGrid articles={articles} />
     </Layout>
   );
 };

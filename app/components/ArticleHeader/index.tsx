@@ -34,13 +34,10 @@ const ArticleHeader: FC<ArticleHeaderProps> = ({
         <div className="pt-0.5 leading-none">
           <div>
             <span className="font-semibold text-grey-700 dark:text-grey-200">
-              {author.name}
+              {locale === 'ja' && author.nameKana ?
+                author.nameKana
+              : author.name}
             </span>
-            {locale === 'ja' && author.nameKana && (
-              <span className="ml-2 text-xs font-normal text-grey-600 dark:text-grey-300">
-                ({author.nameKana})
-              </span>
-            )}
           </div>
           <time className="text-sm text-grey-600 dark:text-grey-400">
             {date}

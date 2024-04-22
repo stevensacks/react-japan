@@ -50,7 +50,9 @@ export const parseArticle = (article: StrapiArticle): Article => ({
 });
 
 export const parseArticles = (articles: Array<StrapiArticle>): Array<Article> =>
-  articles.map(parseArticle);
+  articles
+    .filter((article) => article.attributes.author.data?.id)
+    .map(parseArticle);
 
 export type ArticleEntry = {
   slug: string;

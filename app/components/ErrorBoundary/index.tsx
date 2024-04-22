@@ -2,6 +2,7 @@ import type {FC} from 'react';
 import {isRouteErrorResponse, useRouteError} from '@remix-run/react';
 import {twJoin} from 'tailwind-merge';
 import Document from '~/components/Document';
+import ReactJapanLogo from '~/components/ReactJapanLogo';
 import {getPreferredTheme} from '~/state/theme';
 import {canUseDOM} from '~/utils/dom';
 
@@ -24,10 +25,14 @@ const ErrorBoundary: FC = () => {
       >
         <main className="absolute inset-0 flex items-center justify-center">
           <div className="flex flex-col items-center gap-5 text-center">
+            <ReactJapanLogo className="w-48" />
             <h1 className="flex gap-2 text-2xl leading-10 tracking-wide">
-              {error.status} | {error.statusText}
+              {error.status}
+              {error.statusText ? ` | ${error.statusText}` : ''}
             </h1>
-            {error.data && <p>{error.data}</p>}
+            {process.env.NODE_ENV !== 'production' && error.data && (
+              <p className="text-red-500">{error.data}</p>
+            )}
           </div>
         </main>
       </Document>

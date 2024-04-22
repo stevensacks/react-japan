@@ -1,6 +1,5 @@
 import type {MetaFunction} from '@remix-run/node';
-import {json} from '@remix-run/node';
-import {Link, useLoaderData} from '@remix-run/react';
+import {useLoaderData} from '@remix-run/react';
 import ArticlesGrid from '~/components/ArticlesGrid';
 import AuthorBlock from '~/components/AuthorBlock';
 import Layout from '~/components/Layout';
@@ -9,7 +8,7 @@ import {DRAFTS, parseArticles} from '~/utils/strapi.server';
 
 export const loader = async () => {
   const response = await fetch(
-    `${process.env.STRAPI_BASE_URL}/api/articles?filters[featured][$eq]=true&populate=author,hero,tags&populate[1]=author.image${DRAFTS}`,
+    `${process.env.STRAPI_BASE_URL}/api/articles?populate=author,hero,tags&populate[1]=author.image${DRAFTS}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
@@ -35,11 +34,10 @@ export const loader = async () => {
     : 1
   );
 
-  return json(articles, {
-    headers: {
-      'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=3600',
-    },
-  });
+  return {
+    articles: articles.filter((article) => !article.featured),
+    featured: articles.filter((article) => article.featured),
+  };
 };
 
 export const meta: MetaFunction = () => {
@@ -63,22 +61,19 @@ export const meta: MetaFunction = () => {
 };
 
 const Index = () => {
-  const articles = useLoaderData<typeof loader>();
+  const {articles, featured} = useLoaderData<typeof loader>();
 
   return (
     <Layout>
       <div className="space-y-12">
-        <section>
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold leading-none">注目記事</h2>
-            <Link
-              className="plain-link rounded-md bg-red-500 px-2 py-1 text-sm text-white hover:bg-red-600"
-              to="/blog"
-            >
-              すべての記事
-            </Link>
-          </div>
-          <ArticlesGrid articles={articles} className="mt-4" />
+        <section className="container mx-auto">
+          <h2 className="text-2xl font-semibold leading-none">記事</h2>
+          <ArticlesGrid
+            articles={featured}
+            className="mt-4"
+            isFeatured={true}
+          />
+          <ArticlesGrid articles={articles} className="mt-12" />
         </section>
         <section className="prose mx-auto text-pretty dark:prose-invert">
           <hr />

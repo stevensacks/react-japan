@@ -14,11 +14,7 @@ const ArticleCard: FC<ArticleCardProps> = ({
   article: {author, date, excerpt, hero, locale, slug, tags, title},
   className,
 }) => (
-  <Link
-    className={twJoin('plain-link group block space-y-3', className)}
-    prefetch="intent"
-    to={`/${locale === 'en' ? 'en/' : ''}blog/${slug}`}
-  >
+  <article className={twJoin('space-y-3', className)}>
     {hero && (
       <figure className="overflow-hidden rounded-lg border border-grey-100 dark:border-grey-800">
         <img alt={title} className="aspect-[16/9]" src={hero} />
@@ -28,14 +24,18 @@ const ArticleCard: FC<ArticleCardProps> = ({
       <time className="text-xs text-grey-500 dark:text-grey-300">{date}</time>
       {tags && <Tags className="-mt-0.5" tags={tags} />}
     </div>
-    <h2 className="text-pretty text-lg font-semibold leading-tight transition-colors duration-200 group-hover:text-red-500 dark:group-hover:text-red-500">
+    <Link
+      className="plain-link block text-pretty text-lg font-semibold leading-tight transition-colors duration-200 hover:text-red-500 dark:hover:text-red-500"
+      prefetch="intent"
+      to={`/${locale === 'en' ? 'en/' : ''}blog/${slug}`}
+    >
       {title}
-    </h2>
+    </Link>
     <p className="text-pretty text-sm text-grey-600 dark:text-grey-200">
       {excerpt}
     </p>
     <AuthorBlock author={author} locale={locale} />
-  </Link>
+  </article>
 );
 
 export default ArticleCard;

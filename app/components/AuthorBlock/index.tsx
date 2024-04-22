@@ -25,23 +25,7 @@ const AuthorBlock: FC<AuthorBlockProps> = ({
     </div>
     <div className={twJoin('space-y-1')}>
       <div className={twJoin('text-sm font-semibold leading-none')}>
-        <span>{name} </span>
-        {locale === 'ja' && nameKana && (
-          <>
-            <br className={twJoin('hidden')} />
-            <span
-              className={twJoin(
-                'text-xs',
-
-                'text-grey-600 dark:text-grey-200'
-              )}
-            >
-              <span>(</span>
-              <span className={twJoin('hidden')}>（</span>
-              {nameKana})
-            </span>
-          </>
-        )}
+        <span>{locale === 'ja' && nameKana ? nameKana : name}</span>
       </div>
       <div
         className={twJoin(
