@@ -37,6 +37,12 @@ export default async function handleRequest(
     return Response.redirect(url.toString(), 301);
   }
 
+  if (url.pathname !== url.pathname.toLowerCase()) {
+    url.pathname = url.pathname.toLowerCase();
+
+    return Response.redirect(url.toString(), 301);
+  }
+
   const userAgent = request.headers.get('user-agent') ?? '';
 
   const callbackName = isbot(userAgent) ? 'onAllReady' : 'onShellReady';
