@@ -10,6 +10,7 @@ export const getLocalizedLinks = (path = '', language = '') => [
   {
     content: `https://react-japan.dev${language ? '/' : ''}${language}${path}`,
     name: 'canonical',
+    tagName: 'link',
   },
   {
     href: `https://react-japan.dev${path}`,

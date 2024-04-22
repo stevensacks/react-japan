@@ -71,7 +71,7 @@ const Index = () => {
       <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
         <section className="col-span-1 md:col-span-6 lg:col-span-5 xl:col-span-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-semibold leading-none">注目記事</h1>
+            <h2 className="text-2xl font-semibold leading-none">注目記事</h2>
             <Link
               className="plain-link rounded-md bg-red-500 px-2 py-1 text-sm text-white hover:bg-red-600"
               to="/blog"
