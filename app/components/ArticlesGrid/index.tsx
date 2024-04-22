@@ -17,7 +17,8 @@ const ArticlesGrid: FC<ArticlesGridProps> = ({
 }) => (
   <div
     className={twJoin(
-      'grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3',
+      'grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 xl:grid-cols-3',
+      articles.length > 3 && '2xl:grid-cols-4',
       className
     )}
   >

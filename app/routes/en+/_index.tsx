@@ -1,7 +1,6 @@
 import type {MetaFunction} from '@remix-run/node';
 import {json} from '@remix-run/node';
 import {Link, useLoaderData} from '@remix-run/react';
-import {twJoin} from 'tailwind-merge';
 import ArticlesGrid from '~/components/ArticlesGrid';
 import AuthorBlock from '~/components/AuthorBlock';
 import Layout from '~/components/Layout';
@@ -10,7 +9,7 @@ import {DRAFTS, parseArticles} from '~/utils/strapi.server';
 
 export const loader = async () => {
   const response = await fetch(
-    `${process.env.STRAPI_BASE_URL}/api/articles?filters[featured][$eq]=true&pagination[pageSize]=5&locale=en&populate=author,hero,tags&populate[1]=author.image${DRAFTS}`,
+    `${process.env.STRAPI_BASE_URL}/api/articles?filters[featured][$eq]=true&locale=en&populate=author,hero,tags&populate[1]=author.image${DRAFTS}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
@@ -68,8 +67,8 @@ const Index = () => {
 
   return (
     <Layout>
-      <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
-        <section className="col-span-1 md:col-span-6 lg:col-span-5 xl:col-span-4">
+      <div className="space-y-12">
+        <section>
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold leading-none">
               Featured Articles
@@ -81,20 +80,10 @@ const Index = () => {
               All Articles
             </Link>
           </div>
-          <ArticlesGrid
-            articles={articles}
-            className="mt-4 !grid-cols-1"
-            isFeatured={true}
-          />
+          <ArticlesGrid articles={articles} className="mt-4" />
         </section>
-        <section
-          className={twJoin(
-            'prose mx-auto text-pretty dark:prose-invert',
-
-            'max-w-none md:col-span-6 lg:col-span-7 xl:col-span-8'
-          )}
-        >
-          <hr className="md:hidden" />
+        <section className="prose mx-auto text-pretty dark:prose-invert">
+          <hr />
           <h1 className="not-prose text-2xl font-bold">About</h1>
           <p>
             Welcome to React Japan, where we delve into&nbsp;
@@ -145,7 +134,6 @@ const Index = () => {
               }}
               className="flex-1"
               github="https://github.com/stevensacks"
-              linkedin="https://www.linkedin.com/in/stevensacks/"
             />
             <AuthorBlock
               author={{
