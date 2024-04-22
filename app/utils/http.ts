@@ -9,7 +9,7 @@ export const stripTrailingSlash = (url: string) => {
 export const getLocalizedLinks = (path = '', language = '') => [
   {
     content: `https://react-japan.dev${language ? '/' : ''}${language}${path}`,
-    name: 'canonical',
+    rel: 'canonical',
     tagName: 'link',
   },
   {
