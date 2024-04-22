@@ -18,7 +18,7 @@ export const getLocalizedLinks = (path = '', language = '') => [
     tagName: 'link',
   },
   {
-    href: `https://domain.com/en${path}`,
+    href: `https://react-japan.dev/en${path}`,
     hrefLang: 'en',
     rel: 'alternate',
     tagName: 'link',
