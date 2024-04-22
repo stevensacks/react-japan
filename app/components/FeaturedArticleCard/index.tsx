@@ -12,11 +12,13 @@ const FeaturedArticleCard: FC<FeaturedArticleCardProps> = ({
   article: {author, date, hero, locale, slug, title},
   className,
 }) => (
-  <article
+  <Link
     className={twJoin(
-      'relative flex flex-col justify-end gap-2 overflow-hidden rounded-lg border border-grey-100 px-4 pb-4 pt-80 dark:border-grey-800',
+      'plain-link group relative flex flex-col justify-end gap-2 overflow-hidden rounded-lg border border-grey-100 px-4 pb-4 pt-80 dark:border-grey-800',
       className
     )}
+    prefetch="intent"
+    to={`/${locale === 'en' ? 'en/' : ''}blog/${slug}`}
   >
     <img
       alt={title}
@@ -40,14 +42,10 @@ const FeaturedArticleCard: FC<FeaturedArticleCardProps> = ({
         {locale === 'ja' && author.nameKana ? author.nameKana : author.name}
       </div>
     </div>
-    <Link
-      className="plain-link block text-pretty text-lg font-semibold leading-tight text-white transition-colors duration-200 hover:text-red-500 dark:hover:text-red-500"
-      prefetch="intent"
-      to={`/${locale === 'en' ? 'en/' : ''}blog/${slug}`}
-    >
+    <h2 className="text-pretty text-lg font-semibold leading-tight text-white transition-colors duration-200 group-hover:text-red-500 dark:group-hover:text-red-500">
       {title}
-    </Link>
-  </article>
+    </h2>
+  </Link>
 );
 
 export default FeaturedArticleCard;
