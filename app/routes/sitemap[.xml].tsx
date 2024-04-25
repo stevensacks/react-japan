@@ -1,3 +1,4 @@
+import {getData} from '~/utils/cache.server';
 import type {ArticleEntry} from '~/utils/strapi.server';
 import {parseEntries} from '~/utils/strapi.server';
 
@@ -12,30 +13,32 @@ const getEntry = ({slug, updatedAt}: ArticleEntry, locale = '') => `
 `;
 
 export const loader = async () => {
-  const jaResponse = await fetch(
-    `${process.env.STRAPI_BASE_URL}/api/articles`,
+  const jaResponse = await getData(
+    'articles',
     {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
         'Content-Type': 'application/json',
       },
       method: 'GET',
-    }
+    },
+    6
   );
 
   if (!jaResponse.ok) {
     throw jaResponse;
   }
 
-  const enResponse = await fetch(
-    `${process.env.STRAPI_BASE_URL}/api/articles?locale=en`,
+  const enResponse = await getData(
+    'articles?locale=en',
     {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
         'Content-Type': 'application/json',
       },
       method: 'GET',
-    }
+    },
+    6
   );
 
   if (!enResponse.ok) {
