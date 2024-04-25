@@ -1,4 +1,5 @@
 import type {LoaderFunctionArgs, MetaFunction} from '@remix-run/node';
+import {json} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import ArticleBlock from '~/components/ArticleBlock';
 import BackButton from '~/components/BackButton';
@@ -6,6 +7,8 @@ import Layout from '~/components/Layout';
 import {getLocalizedLinks} from '~/utils/http';
 import {convertMarkdownToHtml} from '~/utils/markdown.server';
 import {DRAFTS, parseArticle} from '~/utils/strapi.server';
+
+export {headers} from '~/utils/http.server';
 
 export const loader = async ({params}: LoaderFunctionArgs) => {
   const {slug} = params;
@@ -35,7 +38,15 @@ export const loader = async ({params}: LoaderFunctionArgs) => {
     const article = parseArticle(data.data);
     const content = await convertMarkdownToHtml(article.content);
 
-    return {...article, content};
+    return json(
+      {...article, content},
+      {
+        headers: {
+          'Cache-Control':
+            'public, s-maxage=604800, stale-while-revalidate=86400',
+        },
+      }
+    );
   } catch {
     throw new Response('', {status: 404, statusText: 'Not found'});
   }

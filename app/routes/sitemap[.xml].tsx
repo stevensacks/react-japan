@@ -1,6 +1,8 @@
 import type {ArticleEntry} from '~/utils/strapi.server';
 import {parseEntries} from '~/utils/strapi.server';
 
+export {headers} from '~/utils/http.server';
+
 const getEntry = ({slug, updatedAt}: ArticleEntry, locale = '') => `
     <url>
         <loc>https://react-japan.dev/${locale}blog/${slug}</loc>

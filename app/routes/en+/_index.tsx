@@ -1,10 +1,13 @@
 import type {MetaFunction} from '@remix-run/node';
+import {json} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import ArticlesGrid from '~/components/ArticlesGrid';
 import AuthorBlock from '~/components/AuthorBlock';
 import Layout from '~/components/Layout';
 import {getLocalizedLinks} from '~/utils/http';
 import {DRAFTS, parseArticles} from '~/utils/strapi.server';
+
+export {headers} from '~/utils/http.server';
 
 export const loader = async () => {
   const response = await fetch(
@@ -34,10 +37,17 @@ export const loader = async () => {
     : 1
   );
 
-  return {
-    articles: articles.filter((article) => !article.featured),
-    featured: articles.filter((article) => article.featured),
-  };
+  return json(
+    {
+      articles: articles.filter((article) => !article.featured),
+      featured: articles.filter((article) => article.featured),
+    },
+    {
+      headers: {
+        'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=3600',
+      },
+    }
+  );
 };
 
 export const meta: MetaFunction = () => {
