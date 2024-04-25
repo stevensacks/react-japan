@@ -43,7 +43,7 @@ export const loader = async ({params}: LoaderFunctionArgs) => {
       {
         headers: {
           'Cache-Control':
-            'public, s-maxage=604800, stale-while-revalidate=86400',
+            'public, maxage=604800, s-maxage=604800, stale-while-revalidate=86400',
         },
       }
     );

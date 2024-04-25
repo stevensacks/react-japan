@@ -88,7 +88,8 @@ export const loader = async () => {
 
   return new Response(content, {
     headers: {
-      'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=21600',
+      'Cache-Control':
+        'public, maxage=86400, s-maxage=86400, stale-while-revalidate=21600',
       'Content-Type': 'application/xml',
       encoding: 'UTF-8',
       'xml-version': '1.0',
