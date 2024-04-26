@@ -27,7 +27,7 @@ export const loader = async () => {
   );
 
   if (!jaResponse.ok) {
-    throw jaResponse;
+    throw new Response(jaResponse.statusText, {status: jaResponse.status});
   }
 
   const enResponse = await getData(
@@ -44,18 +44,15 @@ export const loader = async () => {
   );
 
   if (!enResponse.ok) {
-    throw enResponse;
+    throw new Response(enResponse.statusText, {status: enResponse.status});
   }
 
-  const jaData = await jaResponse.json();
-  const enData = await enResponse.json();
-
-  if (jaData.error || enData.error) {
+  if (jaResponse.error || enResponse.error) {
     throw new Response('Error loading data from strapi', {status: 500});
   }
 
-  const jaEntries = parseAndSortArticleEntries(jaData.data);
-  const enEntries = parseAndSortArticleEntries(enData.data);
+  const jaEntries = parseAndSortArticleEntries(jaResponse.data);
+  const enEntries = parseAndSortArticleEntries(enResponse.data);
 
   const jaMostRecent = jaEntries.at(-1)?.updatedAt ?? '2024-03-30T20:00:00Z';
   const enMostRecent = enEntries.at(-1)?.updatedAt ?? '2024-03-30T20:00:00Z';
