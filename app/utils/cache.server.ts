@@ -18,12 +18,13 @@ const lru: Cache = {
 };
 
 const HOUR = process.env.NODE_ENV === 'production' ? 1000 * 60 * 60 : 1000;
+const WEEK_IN_HOURS = 168;
 
 export const getData = (
   path: string,
   options?: RequestInit,
-  ttlHours = 1,
-  swrHours = 24
+  ttlHours = WEEK_IN_HOURS,
+  swrHours = WEEK_IN_HOURS * 2
 ) =>
   cachified({
     cache: lru,
@@ -64,3 +65,8 @@ export const getData = (
 export const invalidate = (url: string) => {
   lru.delete(url);
 };
+
+export const getCacheControl = (maxAge = 86_400, swr = 3600) => ({
+  'Cache-Control':
+    'public, maxage=86400, s-maxage=86400, stale-while-revalidate=3600',
+});

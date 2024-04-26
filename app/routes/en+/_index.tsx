@@ -4,7 +4,7 @@ import {useLoaderData} from '@remix-run/react';
 import ArticlesGrid from '~/components/ArticlesGrid';
 import AuthorBlock from '~/components/AuthorBlock';
 import Layout from '~/components/Layout';
-import {getData} from '~/utils/cache.server';
+import {getCacheControl, getData} from '~/utils/cache.server';
 import {getLocalizedLinks} from '~/utils/http';
 import {DRAFTS, parseArticles} from '~/utils/strapi.server';
 
@@ -37,12 +37,7 @@ export const loader = async () => {
       articles: articles.filter((article) => !article.featured),
       featured: articles.filter((article) => article.featured),
     },
-    {
-      headers: {
-        'Cache-Control':
-          'public, maxage=86400, s-maxage=86400, stale-while-revalidate=3600',
-      },
-    }
+    {headers: getCacheControl()}
   );
 };
 

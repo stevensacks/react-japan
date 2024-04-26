@@ -4,7 +4,7 @@ import {useLoaderData} from '@remix-run/react';
 import ArticleBlock from '~/components/ArticleBlock';
 import BackButton from '~/components/BackButton';
 import Layout from '~/components/Layout';
-import {getData} from '~/utils/cache.server';
+import {getCacheControl, getData} from '~/utils/cache.server';
 import {getLocalizedLinks} from '~/utils/http';
 import {convertMarkdownToHtml} from '~/utils/markdown.server';
 import {DRAFTS, parseArticle} from '~/utils/strapi.server';
@@ -23,8 +23,8 @@ export const loader = async ({params}: LoaderFunctionArgs) => {
       },
       method: 'GET',
     },
-    24,
-    168
+    336,
+    672
   );
 
   if (!response.ok) {
@@ -37,12 +37,7 @@ export const loader = async ({params}: LoaderFunctionArgs) => {
 
     return json(
       {...article, content},
-      {
-        headers: {
-          'Cache-Control':
-            'public, maxage=604800, s-maxage=604800, stale-while-revalidate=86400',
-        },
-      }
+      {headers: getCacheControl(604_800, 86_400)}
     );
   } catch {
     throw new Response('', {status: 404, statusText: '見つかりません'});

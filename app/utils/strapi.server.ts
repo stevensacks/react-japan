@@ -59,10 +59,15 @@ export type ArticleEntry = {
   updatedAt: string;
 };
 
-export const parseEntries = (
+export const parseAndSortArticleEntries = (
   articles: Array<StrapiArticle>
 ): Array<ArticleEntry> =>
-  articles.map(({attributes: {slug, updatedAt}}) => ({slug, updatedAt}));
+  articles
+    .map(({attributes: {slug, updatedAt}}) => ({slug, updatedAt}))
+    .sort(
+      (a, b) =>
+        new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
+    );
 
 export const DRAFTS =
   process.env.NODE_ENV === 'development' ? '&publicationState=preview' : '';

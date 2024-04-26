@@ -3,7 +3,7 @@ import {json} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import ArticlesGrid from '~/components/ArticlesGrid';
 import Layout from '~/components/Layout';
-import {getData} from '~/utils/cache.server';
+import {getCacheControl, getData} from '~/utils/cache.server';
 import {getLocalizedLinks} from '~/utils/http';
 import {DRAFTS, parseArticles} from '~/utils/strapi.server';
 
@@ -31,12 +31,7 @@ export const loader = async () => {
       : new Date(a.date).getTime() < new Date(b.date).getTime() ? -1
       : 1
     ),
-    {
-      headers: {
-        'Cache-Control':
-          'public, maxage=86400, s-maxage=86400, stale-while-revalidate=3600',
-      },
-    }
+    {headers: getCacheControl()}
   );
 };
 
