@@ -31,3 +31,29 @@ export type ArticleMeta = {
 export type Article = ArticleMeta & {
   content: string;
 };
+
+type StrapiAuthor = {
+  data: {
+    attributes: Omit<Author, 'id'>;
+    id: number;
+  };
+};
+
+type StrapiTag = {
+  attributes: Omit<Tag, 'id'>;
+  id: number;
+};
+
+export type StrapiArticle = {
+  attributes: Omit<Article, 'author' | 'id' | 'tags'> & {
+    author: StrapiAuthor;
+    tags: {data: Array<StrapiTag>};
+    updatedAt: string;
+  };
+  id: number;
+};
+
+export type ArticleEntry = {
+  slug: string;
+  updatedAt: string;
+};

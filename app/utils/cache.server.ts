@@ -17,22 +17,22 @@ const lru: Cache = {
   },
 };
 
-const HOUR = process.env.NODE_ENV === 'production' ? 1000 * 60 * 60 : 1000;
-const WEEK_IN_HOURS = 168;
+const HOUR = process.env.NODE_ENV === 'production' ? 1000 * 60 * 60 : 100;
 
-export const getData = (
-  path: string,
-  options?: RequestInit,
-  ttlHours = WEEK_IN_HOURS,
-  swrHours = WEEK_IN_HOURS * 2
-) =>
+export const getData = (path: string, ttlHours: number, swrHours: number) =>
   cachified({
     cache: lru,
     forceFresh: process.env.NODE_ENV === 'development',
     getFreshValue: async (context) => {
       const response = await fetch(
         `${process.env.STRAPI_BASE_URL}/api/${path}`,
-        options
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+            'Content-Type': 'application/json',
+          },
+          method: 'GET',
+        }
       );
 
       if (!response.ok) {
@@ -62,11 +62,13 @@ export const getData = (
     ttl: HOUR * ttlHours,
   });
 
-export const invalidate = (url: string) => {
-  lru.delete(url);
-};
-
-export const getCacheControl = (maxAge = 86_400, swr = 3600) => ({
-  'Cache-Control':
-    'public, maxage=86400, s-maxage=86400, stale-while-revalidate=3600',
+export const getCacheControl = (
+  maxAge = 86_400,
+  staleWhileRevalidate = 3600
+) => ({
+  'Cache-Control': `public, maxage=${maxAge}, s-maxage=${maxAge}, stale-while-revalidate=${staleWhileRevalidate}`,
 });
+
+export const invalidate = () => {
+  lruInstance.clear();
+};

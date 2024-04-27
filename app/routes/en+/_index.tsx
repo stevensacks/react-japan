@@ -1,45 +1,14 @@
 import type {MetaFunction} from '@remix-run/node';
-import {json} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import ArticlesGrid from '~/components/ArticlesGrid';
 import AuthorBlock from '~/components/AuthorBlock';
 import Layout from '~/components/Layout';
-import {getCacheControl, getData} from '~/utils/cache.server';
 import {getLocalizedLinks} from '~/utils/http';
-import {DRAFTS, parseArticles} from '~/utils/strapi.server';
+import {blogLoader} from '~/utils/strapi.server';
 
 export {headers} from '~/utils/http.server';
 
-export const loader = async () => {
-  const response = await getData(
-    `articles?locale=en&populate=author,hero,tags&populate[1]=author.image${DRAFTS}`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      method: 'GET',
-    }
-  );
-
-  if (!response.ok) {
-    throw new Response(response.statusText, {status: response.status});
-  }
-
-  const articles = parseArticles(response.data).sort((a, b) =>
-    a.slug === 'remix-vs-next' ? -1
-    : new Date(a.date).getTime() < new Date(b.date).getTime() ? -1
-    : 1
-  );
-
-  return json(
-    {
-      articles: articles.filter((article) => !article.featured),
-      featured: articles.filter((article) => article.featured),
-    },
-    {headers: getCacheControl()}
-  );
-};
+export const loader = blogLoader;
 
 export const meta: MetaFunction = () => {
   const title = 'React Japan';

@@ -1,6 +1,5 @@
-import {getData} from '~/utils/cache.server';
-import type {ArticleEntry} from '~/utils/strapi.server';
-import {parseAndSortArticleEntries} from '~/utils/strapi.server';
+import type {ArticleEntry} from '~/types';
+import {sitemapLoader} from '~/utils/strapi.server';
 
 export {headers} from '~/utils/http.server';
 
@@ -13,52 +12,13 @@ const getUrl = ({slug, updatedAt}: ArticleEntry, locale = '') => `
 `;
 
 export const loader = async () => {
-  const jaResponse = await getData(
-    'articles',
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      method: 'GET',
-    },
-    6,
-    24
-  );
+  const {english, japanese} = await sitemapLoader();
 
-  if (!jaResponse.ok) {
-    throw new Response(jaResponse.statusText, {status: jaResponse.status});
-  }
+  const jaMostRecent = english.at(-1)?.updatedAt ?? '2024-03-30T20:00:00Z';
+  const enMostRecent = japanese.at(-1)?.updatedAt ?? '2024-03-30T20:00:00Z';
 
-  const enResponse = await getData(
-    'articles?locale=en',
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      method: 'GET',
-    },
-    6,
-    24
-  );
-
-  if (!enResponse.ok) {
-    throw new Response(enResponse.statusText, {status: enResponse.status});
-  }
-
-  if (jaResponse.error || enResponse.error) {
-    throw new Response('Error loading data from strapi', {status: 500});
-  }
-
-  const jaEntries = parseAndSortArticleEntries(jaResponse.data);
-  const enEntries = parseAndSortArticleEntries(enResponse.data);
-
-  const jaMostRecent = jaEntries.at(-1)?.updatedAt ?? '2024-03-30T20:00:00Z';
-  const enMostRecent = enEntries.at(-1)?.updatedAt ?? '2024-03-30T20:00:00Z';
-
-  const jaUrls = jaEntries.map((entry) => getUrl(entry)).join('');
-  const enUrls = enEntries.map((entry) => getUrl(entry, 'en/')).join('');
+  const jaUrls = english.map((entry) => getUrl(entry)).join('');
+  const enUrls = japanese.map((entry) => getUrl(entry, 'en/')).join('');
 
   const content = `
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
