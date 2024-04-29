@@ -17,7 +17,7 @@ const lru: Cache = {
   },
 };
 
-const HOUR = process.env.NODE_ENV === 'production' ? 1000 * 60 * 60 : 100;
+const HOUR = process.env.NODE_ENV === 'production' ? 1000 * 60 * 60 : 20;
 
 export const getData = (path: string, ttlHours: number, swrHours: number) =>
   cachified({

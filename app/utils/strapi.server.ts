@@ -58,7 +58,7 @@ export const DRAFTS =
 export const getApiUrl = (isEnglish = false, slug = '') =>
   `articles${slug ? '/' : ''}${slug}?${isEnglish ? 'locale=en&' : ''}populate=author,hero,tags&populate[1]=author.image${DRAFTS}`;
 
-export const ONE_WEEK_IN_HOURS = 168;
+export const THIRTY_DAYS_IN_HOURS = 720;
 
 export const blogLoader = async ({request}: LoaderFunctionArgs) => {
   const url = new URL(request.url);
@@ -66,8 +66,8 @@ export const blogLoader = async ({request}: LoaderFunctionArgs) => {
 
   const response = await getData(
     getApiUrl(isEnglish),
-    ONE_WEEK_IN_HOURS,
-    ONE_WEEK_IN_HOURS * 2
+    THIRTY_DAYS_IN_HOURS,
+    THIRTY_DAYS_IN_HOURS * 2
   );
 
   if (!response.ok) {
@@ -102,7 +102,7 @@ export const articleLoader = async ({params, request}: LoaderFunctionArgs) => {
   const url = new URL(request.url);
   const isEnglish = url.pathname.startsWith('/en');
 
-  const ttlHours = slug ? ONE_WEEK_IN_HOURS * 2 : ONE_WEEK_IN_HOURS;
+  const ttlHours = slug ? THIRTY_DAYS_IN_HOURS * 2 : THIRTY_DAYS_IN_HOURS;
 
   const response = await getData(
     getApiUrl(isEnglish, slug),
@@ -133,8 +133,8 @@ export const articleLoader = async ({params, request}: LoaderFunctionArgs) => {
 export const sitemapLoader = async () => {
   const jaResponse = await getData(
     getApiUrl(),
-    ONE_WEEK_IN_HOURS,
-    ONE_WEEK_IN_HOURS * 2
+    THIRTY_DAYS_IN_HOURS,
+    THIRTY_DAYS_IN_HOURS * 2
   );
 
   if (!jaResponse.ok) {
@@ -143,8 +143,8 @@ export const sitemapLoader = async () => {
 
   const enResponse = await getData(
     getApiUrl(true),
-    ONE_WEEK_IN_HOURS,
-    ONE_WEEK_IN_HOURS * 2
+    THIRTY_DAYS_IN_HOURS,
+    THIRTY_DAYS_IN_HOURS * 2
   );
 
   if (!enResponse.ok) {

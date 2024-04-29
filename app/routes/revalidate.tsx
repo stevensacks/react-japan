@@ -2,8 +2,8 @@ import {redirect} from '@remix-run/node';
 import {getData, invalidate} from '~/utils/cache.server';
 import {
   getApiUrl,
-  ONE_WEEK_IN_HOURS,
   sitemapLoader,
+  THIRTY_DAYS_IN_HOURS,
 } from '~/utils/strapi.server';
 
 export const loader = async () => {
@@ -13,10 +13,18 @@ export const loader = async () => {
 
   const articles = [
     ...japanese.map(({slug}) =>
-      getData(getApiUrl(false, slug), ONE_WEEK_IN_HOURS, ONE_WEEK_IN_HOURS * 2)
+      getData(
+        getApiUrl(false, slug),
+        THIRTY_DAYS_IN_HOURS,
+        THIRTY_DAYS_IN_HOURS * 2
+      )
     ),
     ...english.map(({slug}) =>
-      getData(getApiUrl(true, slug), ONE_WEEK_IN_HOURS, ONE_WEEK_IN_HOURS * 2)
+      getData(
+        getApiUrl(true, slug),
+        THIRTY_DAYS_IN_HOURS,
+        THIRTY_DAYS_IN_HOURS * 2
+      )
     ),
   ];
 
