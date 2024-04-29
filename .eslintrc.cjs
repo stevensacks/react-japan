@@ -246,13 +246,9 @@ module.exports = {
         },
         {
             files: ['*.test.ts?(x)', '*.stories.ts?(x)'],
-            env: {
-                'vitest-globals/env': true,
-            },
             extends: [
                 '@remix-run/eslint-config/jest-testing-library',
-                'plugin:vitest-globals/recommended',
-                'plugin:vitest/recommended',
+                'plugin:vitest/legacy-recommended',
             ],
             rules: {
                 'guard-for-in': 'off',
@@ -269,13 +265,9 @@ module.exports = {
         },
         {
             files: ['test/**/*.ts?(x)'],
-            env: {
-                'vitest-globals/env': true,
-            },
             extends: [
                 '@remix-run/eslint-config/jest-testing-library',
-                'plugin:vitest-globals/recommended',
-                'plugin:vitest/recommended',
+                'plugin:vitest/legacy-recommended',
             ],
             rules: {
                 '@typescript-eslint/no-var-requires': 'off',
